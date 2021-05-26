@@ -1,0 +1,89 @@
+<html class="no-js " lagn="ko"
+      xmlns:th="http://www.thymelaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>장바구니 목록 보기</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .navbar-inverse .navbar-nav > .active > a,
+        .navbar-inverse .navbar-nav > .active > a:focus,
+        .navbar-inverse .navbar-nav > .active > a:hover {
+            color: rgb(255, 255, 255);
+            background-color: red
+        }
+
+        img {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h2>장바구니 목록</h2>
+
+    <table class="table table-hover table-bordered">
+        <thead>
+        <tr>
+            <th>No</th>
+            <th>이미지</th>
+            <th>상품명</th>
+            <th>가격</th>
+            <th>구매 수량</th>
+            <th>일자</th>
+            <th></th>
+        </tr>
+
+        </thead>
+        <tr var="cart" items="${list}">
+            <td>${cart.cartno}</td>
+            <td><img src="/static/upload/${cart.productimageName}" alt=""></td>
+            <td>${cart.productname}</td>
+            <td>${cart.productprice}</td>
+            <td><select name="수량~">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select></td>
+            <!-- <td>${member.getUserId()}</td> -->
+            <td>
+                <fmt:formatDate th:value="${cart.cartdate}" pattern="yyyy년 MM월 dd일"/>
+            </td>
+            <td>
+                <button type="button" class="btn btn-danger"
+                        onclick="location.href='/cart/cartDelete/${cart.cartno}',alert('삭제 완료')">삭제
+                </button>
+                <button class="btn btn-warning"
+                        onclick="location.href='/cart/cartDelete/${cart.cartno}',alert('구매 완료')">구매 하기
+                </button>
+            </td>
+        </tr>
+
+        <c:set var="sum" value="${sum + (cart.productprice * cart.productsalescnt )}"/>
+
+        <tr class="danger">
+            <td colspan="7" align="right">
+                <b><font size="+1">총 구매금액 :
+                    <fmt:formatNumber pattern="###,###,###" value="${sum}"/>
+                    원</font></b>
+            </td>
+        </tr>
+
+        <tbody>
+        </tbody>
+
+    </table>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,133 @@
+<html class="no-js " lagn="ko"
+      xmlns:th="http://www.thymelaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" type="image/x-icon" href="/static/images/aland.jpg"/>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <meta charset="UTF-8">
+    <title>상품목록</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .w3-sidebar a {
+            font-family: "Roboto", sans-serif
+        }
+
+        .btn {
+            padding: 8px 10px;
+            background-color: #333;
+            color: #f1f1f1;
+            border-radius: 4;
+            transition: .2s;
+            margin-left: 35%;
+        }
+
+        .carousel-inner img {
+            -webkit-filter: grayscale(45%);
+            filter: grayscale(45%); /* make all photos black and white */
+            width: 75%;
+            margin: auto;
+        }
+
+        .thumbnail {
+            margin-top: 10px;
+            font-size: 15px;
+            padding: 0 0 15px 0;
+            border: 2;
+            border-radius: 4;
+        }
+
+        .pagination {
+            margin-left: 46%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-sm-13">
+            <br>
+
+            <div class="col-sm-3" th:each="product:${product}">
+                <div class="thumbnail">
+                    <img src="/static/upload/${product.productimageName}"
+                         alt="이미지 업로드">
+                    <ul>
+                        <li th:text="|제품명 : ${product.productname}|"></li>
+                        <li th:text="|가격 : ${product.productprice}원|"></li>
+                    </ul>
+                    <button class="btn" data-toggle="modal" data-target="#myModal"
+                            onclick="location.href='/product/productdetail/${product.productno}'">자세히 보기
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    $(document).ready(
+        function () {
+            // Initialize Tooltip
+            $('[data-toggle="tooltip"]').tooltip();
+
+            // Add smooth scrolling to all links in navbar + footer link
+            $(".navbar a, footer a[href='#myPage']").on('click',
+                function (event) {
+
+                    // Make sure this.hash has a value before overriding default behavior
+                    if (this.hash !== "") {
+
+                        // Prevent default anchor click behavior
+                        event.preventDefault();
+
+                        // Store hash
+                        var hash = this.hash;
+
+                        // Using jQuery's animate() method to add smooth page scroll
+                        // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+                        $('html, body').animate({
+                            scrollTop: $(hash).offset().top
+                        }, 900, function () {
+
+                            // Add hash (#) to URL when done scrolling (default click behavior)
+                            window.location.hash = hash;
+                        });
+                    } // End if
+                });
+        })
+</script>
+</body>
+</html>
+
+<!-- layoutTag를 적용하므로 bootstrap.jsp 파일이 필요 없어졌다. -->
+<!-- == : eq
+!= : ne
+< : lt
+> : gt
+<= : le
+>= : ge -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

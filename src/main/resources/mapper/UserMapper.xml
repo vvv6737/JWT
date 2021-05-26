@@ -31,18 +31,17 @@
     </select>
 
     <select id="isFinishSurvey" parameterType="String" resultType="com.example.survey.model.UserVO">
-        SELECT u.`seq`,
-               u.`name`,
-               u.`email`,
-               u.`last_update`,
-               u.`id`,
-               u.`tel`,
-               b.`event_seq` as eventSeq
+        SELECT u.seq,
+               u.name,
+               u.email,
+               u.last_update,
+               u.id,
+               u.tel,
+               b.event_seq
         FROM bbs b
                  LEFT JOIN user u
                            ON b.user_seq = u.seq
-        where u.id = ${id}
-        /*and e.event_seq = ${seq}*/
+        where u.id = #{id}
     </select>
 
     <!--리스트-->

@@ -1,0 +1,94 @@
+<html class="no-js " lagn="ko"
+      xmlns:th="http://www.thymelaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>상품 상세 정보</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+
+    <h2>상품 상세 정보</h2>
+
+    <table class="table table-hover table-bordered">
+        <thead>
+        <tr>
+            <th>제품명</th>
+            <th>가 격</th>
+            <th>판매 량</th>
+        </tr>
+        </thead>
+        <tr>
+            <td th:text="${productdetail.productname}"></td>
+            <td th:text="${productdetail.productprice}"></td>
+            <td th:text="${productdetail.productsalescnt}"></td>
+        </tr>
+    </table>
+    <table class="table table-hover table-bordered">
+        <thead>
+        <tr>
+            <th>이미지</th>
+        </tr>
+        </thead>
+        <tr>
+            <td><img src="/static/upload/${productdetail.productimageName}" alt="이미지 업로드">
+            <td>
+        </tr>
+    </table>
+    <form action="/cart/insertCart" method="post">
+        <div class="input-group">
+            <input type="hidden" name="cartproductid" th:value="${productdetail.productno}"/>
+            <input type="hidden" id="productname" name="productname" th:value="${productdetail.productname}"/>
+            <!--  <input type="hidden" id="cartno" name="cartno" value="${insertCart.cartno}"/>-->
+            <!--  <input type="hidden" id="cartproductid" name="cartproductid" value="${productdetail.productno}"/>-->
+            <input type="hidden" id="cartuserid" name="cartuserid" th:value="${member.userId}"/>
+            <input type="hidden" id="productimagefile" name="productimagefile"
+                   th:value="${productdetail.productimagefile}"/>
+            <input type="hidden" id="produtimageName" name="productimageName"
+                   th:value="${productdetail.productimageName}"/>
+            <input type="hidden" id="productimageOriName" name="productimageOriName"
+                   th:value="${productdetail.productimageOriName}"/>
+            <input type="hidden" id="productimageUrl" name="productimageUrl" th:value="${productdetail.productimageUrl}"/>
+            <input type="hidden" id="productprice" name="productprice" th:value="${productdetail.productprice}"/>
+            <input type="hidden" id="productsalescnt" name="productsalescnt" th:value="${productdetail.productsalescnt}"/>
+        </div>
+        <div th:if="${member != null}">
+            <select name="수량~">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <button class="btn btn-warning"
+                    onclick="'location.href='/cart/list'">구매 하기
+            </button>
+            <input type="submit" value="장바구니담기">
+        </div>
+    </form>
+    <div th:if="${member == null}">
+        <select name="수량~">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <button class="btn btn-warning"
+                onclick="location.href='/login/login',alert('로그인 필요')">구매 하기
+        </button>
+
+        <button class="btn btn-danger" th:if="${admin != null}"
+                onclick="location.href='/product/delete/${productdetail.productno}'">삭제
+        </button>
+    </div>
+
+</div>
+</body>
+</html>

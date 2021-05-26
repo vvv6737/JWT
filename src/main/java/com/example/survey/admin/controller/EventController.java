@@ -137,7 +137,7 @@ public class EventController {
 
     //해당 이벤트의 리스트 입력창 - 설문조사 창
     @GetMapping("/surveylist/{seq}/{id}")
-    private String eventSessionwrite(@PathVariable int seq, @PathVariable String id, Model model, HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+    private String eventSessionwrite(@PathVariable int seq, @PathVariable String id, Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) throws UnsupportedEncodingException {
         try {
             //세션 만료시 만료 페이지로 보낸다.
             Map<String, Object> claimMap = verifyJWT(id);
@@ -151,9 +151,12 @@ public class EventController {
             model.addAttribute("eventSession", eventVO);
 
             String claimName = (String) claimMap.get("id");
+
             int eventSeq = Integer.parseInt(String.valueOf(claimMap.get("eventSeq")));
             //int eventSeq = (Integer) claimMap.get("event_seq");
             UserVO userVO = userService.urlTest(claimName);
+
+            //설문조사 확인 여부
             UserVO isJoin = userService.isFinishSurvey(claimName);
             /**
              * 본 사용자가 설문조사에 답변을 완료했는지 여부를 판단한다.
@@ -167,8 +170,9 @@ public class EventController {
                 return "pages/writeSurvey";
             }*/
 
-            if (isJoin == null) {
+            if (isJoin != null) {
                 // 이미 참여한 경우
+                //session.invalidate();
                 return "redirect:/SurveyCompleted";
             } else if (SessionUtils.setUser(userVO, request)) {
                 model.addAttribute("test", userVO);

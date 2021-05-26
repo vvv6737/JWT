@@ -12,15 +12,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
-<script>
-    function moveUrl(seq) {
-        window.location.href = '/list/boardDetail/' + seq;
-    }
-    function moveEvent(seq) {
-        window.location.href = '/surveylist/' + seq;
-    }
-</script>
-
 <style>
     .btn {
         padding: 5px 13px;
@@ -77,6 +68,10 @@
                             <li><a href="/userlist">유저목록</a></li>
                             <li><a href="/eventlist">이벤트 목록</a></li>
                         </ul>
+                    </li>
+
+                    <li>
+                        <a href="/product/productinsert">상품 관리</a>
                     </li>
 
                     <li th:if="${admin == null}">
