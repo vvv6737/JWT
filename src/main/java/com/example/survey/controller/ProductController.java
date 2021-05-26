@@ -5,11 +5,13 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.example.survey.admin.model.AdminVO;
 import com.example.survey.admin.model.EventVO;
 import com.example.survey.admin.service.EventService;
 import com.example.survey.model.Pagination;
 import com.example.survey.model.ProductVO;
 import com.example.survey.service.ProductService;
+import com.example.survey.utils.SessionUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,11 +36,14 @@ public class ProductController {
 
     // 웹 브라우저에서 http://localhost:8888/Product/Productinsert 로 호출한다.
     @RequestMapping("/productinsert")
-    private String boardInsertForm(Model model) {
+    private String boardInsertForm(Model model, HttpServletRequest request) {
 
         EventVO eventVO1 = new EventVO();
         List<EventVO> eventlist = eventService.eventList(eventVO1);
         model.addAttribute("eventlist", eventlist);
+
+        AdminVO admin = SessionUtils.getAdmin(request);
+        model.addAttribute("admin", admin);
 
         System.out.println("Controller insert......");
         return "pages/product/productinsert";
@@ -68,7 +73,7 @@ public class ProductController {
             String destinationFileName;
 
             // fileUrl = "uploadFiles 폴더의 위치";
-            String productimageUrl = "/Users/sam/Desktop/survey/src/main/resources/static/upload/";
+            String productimageUrl = "/Users/mac/Desktop/survey/src/main/resources/static/upload/";
 
             do {
                 destinationFileName = RandomStringUtils.randomAlphanumeric(32) + "." + fileNameExtension;
@@ -101,7 +106,7 @@ public class ProductController {
                                @RequestParam(required = false, defaultValue = "1") int range) throws Exception {
 
         // 전체 게시글 개수
-        int listCnt = productService.getProductListCnt();
+        int listCnt = productService.getProductListCnt();;
 
         // Pagination 객체생성
         Pagination pagination = new Pagination();
