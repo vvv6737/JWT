@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.survey.mapper.ReplyMapper">
+
+    <!-- 댓글 리스트 -->
+    <select id="replyList" parameterType="int" resultType="com.example.survey.model.ReplyVO">
+        SELECT *
+        FROM reply
+        where seq = #{seq}
+        ORDER BY reseq
+    </select>
+
+    <!-- 댓글 등록 -->
+    <insert id="replyInsert" parameterType="com.example.survey.model.ReplyVO">
+        INSERT INTO reply (
+                           reseq,
+                           seq,
+                           name,
+                           lastupdate,
+                           recontent,
+                           event_seq)
+        VALUES (#{reseq},
+                #{seq},
+                #{name},
+                now(),
+                #{recontent},
+                #{eventSeq})
+    </insert>
+
+    <!-- 댓글 수정 -->
+    <update id="replyUpdate" parameterType="com.example.survey.model.ReplyVO">
+        UPDATE reply
+        SET recontent = #{recontent}
+        WHERE reseq = #{reseq}
+    </update>
+
+    <!-- 댓글 삭제 -->
+    <delete id="replyDelete" parameterType="int">
+        DELETE
+        FROM reply
+        WHERE reseq = #{reseq}
+    </delete>
+
+</mapper>

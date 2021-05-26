@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<header th:fragment="headerFragment">
+    <div class="container-fluid" style="background-color:#99ccff; color:#FFF; height:200px;">
+        <h1>관리자</h1>
+        <h3>관리자 페이지</h3>
+    </div>
+
+    <!-- 관리자 메뉴바 -->
+    <nav class="navbar-default" style="height: 55px;">
+        <div class="container">
+
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/adminindex">Admin</a>
+            </div>
+
+            <div>
+                <div class="form-group collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                설문 관리 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/eventlist/eventwrite">설문조사 이벤트 추가</a></li>
+                                <li><a href="/surveylist/1">영화 만족도 설문조사</a></li>
+                                <li><a href="/userlist">유저 목록</a></li>
+                                <li><a href="/eventlist">이벤트 수정</a></li>
+                            </ul>
+                        </li>
+
+                        <li th:if="${admin == null}">
+                            <a href="/adminloginform">로그인</a>
+                        </li>
+
+                        <li th:if="${admin != null}">
+                            <a href="/adminlogout" role="button">로그아웃</a>
+                        </li>
+
+                        <li th:if="${admin != null}">
+                            <a th:text="|${admin.managerName}님 환영합니다.|"/>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+</header>
+</html>

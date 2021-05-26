@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html class="no-js " lagn="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>설문조사작성</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!--폰트-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&display=swap" rel="stylesheet">
+</head>
+<style>
+    table, th, td {
+        border: 1px solid #d9d9d9;
+    }
+
+    th {
+        background-color: #d1e5fa;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        display: inline-block;
+        transition-duration: 0.2s;
+        cursor: pointer;
+    }
+
+    .btn-write {
+        background-color: white;
+        color: black;
+        border: 2px solid #d1e5fa;
+    }
+
+    .btn-write:hover {
+        background-color: #d1e5fa;
+        color: white;
+    }
+
+    .table > tbody > tr > th {
+        vertical-align: middle;
+    }
+
+    .glyphicon {
+        font-size: 25px;
+    }
+    h2 {
+        font-family: 'Nanum Myeongjo', serif;
+    }
+    p {
+        margin: 5px 0 5px;
+    }
+    caption {
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+</style>
+<body>
+</head>
+<div class="container">
+    <div class="container-fluid">
+        <h2><span class="glyphicon glyphicon-ok"></span> <p th:text="${eventSession.eventName}" style="display:inline"></p> </h2>
+
+        <form class="form-horizontal" action="/eventlist/eventsession" method="post">
+            <table class="table table-bodered">
+
+                <colgroup>
+                    <col width="15%">
+                    <col width="*">
+                </colgroup>
+
+                <caption>릿스타샵을 이용해 주셔서 감사드립니다.</caption>
+                <caption>설문 조사에 참여해주시면 최저가로 영화 관람 하실 수 있는 쿠폰을 드립니다.</caption>
+                <caption>*쿠폰 지급기간: 즉시 지급</caption>
+
+                <input type="hidden" name="eventName" th:value="${eventSession.eventName}">
+                <input type="hidden" name="eventSeq" th:value="${eventSession.seq}">
+                <input type="hidden" name="userSeq" th:value="${test.seq}">
+                <input type="hidden" name="title" th:value="|${test.name}님의 설문조사|">
+
+                <tbody>
+                <tr>
+                    <th scope="row">성명</th>
+                    <td><input type="hidden" class="form-control" name="name" readonly="readonly"
+                               th:value="${test.name}" style="border: 0; background-color: transparent;"/>
+                        <p th:text="${test.name}"></p>
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <th scope="row">Q1.</th>
+                    <td>
+                        <div class="form-check-inline" style="float: left;">
+                            <input type="hidden" class="form-control" name="question1" readonly="readonly"
+                                   th:value="${eventSession.question1}" style="border: 0; background-color: transparent; width: 500px;"/>
+                            <p th:text="${eventSession.question1}"></p>
+                            <label class="form-check-label" for="check1" style="letter-spacing: 3px;">
+                                <input type="radio" class="form-check-input" id="responsegradle1" name="responsegradle1"
+                                       value="만족" required> 만족
+                                <input type="radio" class="form-check-input" id="responsegradle1" name="responsegradle1"
+                                       value="보통"> 보통
+                                <input type="radio" class="form-check-input" id="responsegradle1" name="responsegradle1"
+                                       value="불만족"> 불만족
+                            </label>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th scope="row">Q2.</th>
+                    <td>
+                        <div class="form-check-inline" style="float: left;">
+                            <input type="hidden" class="form-control" name="question2" readonly="readonly"
+                                   th:value="${eventSession.question2}" style="border: 0; background-color: transparent; width: 500px;"/>
+                            <p th:text="${eventSession.question2}"></p>
+                            <label class="form-check-label" for="check2" style="letter-spacing: 3px;">
+                                <input type="radio" class="form-check-input" id="responsegradle2" name="responsegradle2"
+                                       value="가격" required> 가격
+                                <input type="radio" class="form-check-input" id="responsegradle2" name="responsegradle2"
+                                       value="서비스"> 서비스
+                                <input type="radio" class="form-check-input" id="responsegradle2" name="responsegradle2"
+                                       value="배송속도"> 배송속도
+                            </label>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th scope="row">Q3.</th>
+                    <td>
+                        <div class="form-check-inline" style="float: left;">
+                            <input type="hidden" class="form-control" name="question3" readonly="readonly"
+                                   th:value="${eventSession.question3}" style="border: 0; background-color: transparent; width: 500px;"/>
+                            <p th:text="${eventSession.question3}"></p>
+                            <label class="form-check-label" for="check3" style="letter-spacing: 3px;">
+                                <input type="radio" class="form-check-input" id="responsegradle3" name="responsegradle3"
+                                       value="있음" required> 있음
+                                <input type="radio" class="form-check-input" id="responsegradle3" name="responsegradle3"
+                                       value="보통"> 보통
+                                <input type="radio" class="form-check-input" id="responsegradle3" name="responsegradle3"
+                                       value="없음"> 없음
+                            </label>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th><input type="hidden" class="form-control" name="question4" readonly="readonly"
+                           th:value="${eventSession.question4}" style="border: 0; background-color: transparent;"/>
+                        <p th:text="${eventSession.question4}"></p>
+                    </th>
+                    <td><textarea cols="100" rows="10" class="form-control" name="content" value=""
+                                  placeholder="릿스타샵에게 전하고 싶은 말이 있으시다면 적어주세요 :)"
+                                  style="border: 0; white-space: pre-line;"></textarea></td>
+                </tr>
+                </tbody>
+            </table>
+            <button type="submit" id="submit" class="btn btn-write" onclick="display();">작 성</button>
+        </form>
+
+    </div>
+</div>
+</body>
+
+<script>
+    function display() {
+        window.alert("설문에 응해주셔서 감사합니다!");
+        /*window.open("about:blank", "_self").close();*/
+    }
+
+    $(document).ready(function () {
+        $("#submit").on("click", function () {
+            if ($("#responsegradle1").val() == "") {
+                alert("질문 1 선택 바랍니다.");
+                $("#responsegradle1").focus();
+                return false;
+            }
+            if ($("#responsegradle2").val() == "") {
+                alert("질문2 선택 바랍니다.");
+                $("#responsegradle2").focus();
+                return false;
+            }
+            if ($("#responsegradle3").val() == "") {
+                alert("질문3 선택 바랍니다.");
+                $("#responsegradle3").focus();
+                return false;
+            }
+        });
+    })
+</script>
+
+</html>

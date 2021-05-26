@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html class="no-js " lagn="ko"
+      xmlns:th="http://www.thymelaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>이벤트 상세보기</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <!--폰트-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+
+    <style>
+        .btn {
+            padding: 5px 13px;
+            display: inline-block;
+            transition-duration: 0.2s;
+            cursor: pointer;
+        }
+        .btn1:hover {
+            background-color: #7dd77d;
+            color: white;
+        }
+        .btn3:hover {
+            background-color: #d65454;
+            color: white;
+        }
+        .btn1 {
+            background-color: white;
+            color: black;
+            border: 2px solid #7dd77d;
+        }
+        .btn3 {
+            background-color: white;
+            color: black;
+            border: 2px solid #d65454;
+        }
+        table, th, td {
+            border: 1px solid #d9d9d9;
+        }
+        th {
+            background-color: #e6e6ff;
+        }
+        .glyphicon {
+            font-size: 25px;
+        }
+        caption {
+            padding-top: 0px !important;
+            padding-bottom: 0px !important;
+            color: #777;
+            text-align: left;
+        }
+        .table>tbody>tr>td {
+            vertical-align: middle;
+        }
+        h2 {
+            font-family: 'Nanum Gothic', sans-serif;
+        }
+        .table>tbody>tr>th {
+            vertical-align: middle;
+        }
+    </style>
+
+    <script>
+        function Delete(seq) {
+            if (!confirm("정말로 삭제하시겠습니까?")) {
+                return false;
+            } else {
+                alert("삭제되었습니다.");
+                location.href = '/eventlist/eventDelete/' + seq;
+            }
+        }
+    </script>
+
+</head>
+<body>
+
+<div class="container">
+    <form class="form-horizontal" method="get" action="">
+        <div>
+            <div class="col-sm-6">
+                <h2><span class="glyphicon glyphicon-ok"></span> 이벤트, 질문 상세보기</h2>
+                <button type="button" class="btn btn-1 btn1" onclick="location.href='/eventlist'">목록으로</button>
+
+                <span>
+                    <!--<button type="button" class="btn btn-3 btn3" th:if="${admin != null}" onclick="test()"
+                            th:onclick="'location.href = \'/eventdelete/' + ${eventDetail.seq} + '\''">삭제
+                    </button>-->
+                    <button type="button" class="btn btn-3 btn3" th:if="${admin != null}" onclick="test()" th:attr="onclick=|Delete(${eventDetail.seq})|">삭제
+                    </button>
+                </span>
+
+            </div>
+        </div>
+
+        <div class="container">
+
+            <table class="table table-bodered">
+                <caption><h4>이벤트 상세보기</h4></caption>
+                <colgroup>
+                    <col width="20%">
+                    <col width="30%">
+                    <col width="20%">
+                    <col width="*">
+                </colgroup>
+
+                <tbody>
+                <tr>
+                    <th>제목</th>
+                    <td colspan="3" th:text="${eventDetail.eventName}"/>
+                </tr>
+                <tr>
+                    <th>이벤트 시작일자</th>
+                    <td th:text="${#dates.format(eventDetail.regDate, 'yyyy년 MM월 dd일')}"/>
+                    <th>이벤트 종료일자</th>
+                    <td colspan="3" th:text="${#dates.format(eventDetail.expiredDate, 'yyyy년 MM월 dd일')}"/>
+                </tr>
+                <tr>
+                    <th>질문1</th>
+                    <td colspan="3" th:text="${eventDetail.question1}"/>
+                </tr>
+                <tr>
+                    <th>질문2</th>
+                    <td colspan="3" th:text="${eventDetail.question2}"/>
+                </tr>
+                <tr>
+                    <th>질문3</th>
+                    <td colspan="3" th:text="${eventDetail.question3}"/>
+                </tr>
+                <tr>
+                    <th>질문4</th>
+                    <td colspan="3" th:text="${eventDetail.question4}"/>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+</div>
+</body>
+
+</html>

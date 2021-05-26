@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html class="no-js " lagn="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/adminLayout}">
+<head>
+    <meta charset="UTF-8">
+    <title>유저목록</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+    <script>
+        function editAction(bbs_id, name, email, password, id, tel) {
+            let hiddenId = document.getElementById('bbs_id');
+            hiddenId.value = bbs_id;
+            document.getElementById('name').value = name;
+            document.getElementById('email').value = email;
+            document.getElementById('password').value = password;
+            document.getElementById('id').value = id;
+            document.getElementById('tel').value = tel;
+        }
+
+        function editProc() {
+            let hiddenId = document.getElementById('bbs_id').value;
+            document.getElementById("edit_seq").value = hiddenId;
+
+            let nameValue = document.getElementById('name').value;
+            document.getElementById("edit_name").value = nameValue;
+
+            let emailValue = document.getElementById('email').value;
+            document.getElementById("edit_email").value = emailValue;
+
+            let passwordValue = document.getElementById('password').value;
+            document.getElementById("edit_password").value = passwordValue;
+
+            let telValue = document.getElementById('tel').value;
+            document.getElementById("edit_tel").value = telValue;
+
+            let idValue = document.getElementById('id').value;
+            document.getElementById("edit_id").value = idValue;
+
+            document.getElementById('edit_form').submit();
+        }
+
+        function deleteAction() {
+            let hiddenId = document.getElementById('edit_seq');
+            document.getElementById("edit_seq").value = hiddenId;
+        }
+
+        function deleteProc(seq) {
+            document.getElementById("delete_seq").value = seq;
+            document.getElementById('delete_form').submit();
+        }
+    </script>
+
+    <script>
+        function tokenUrl(id) {
+            window.location.href = '/token/' + id;
+        }
+        function copyt() {
+            var copyText = document.getElementById("copyy");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999)
+            document.execCommand("copy");
+            alert("해당 유저 토큰이 복사되었습니다.");
+            //alert("Copied the text: " + copyText.value);
+        }
+    </script>
+
+    <style>
+        .table > tbody > tr > td {
+            vertical-align: middle;
+        }
+
+        .glyphicon {
+            font-size: 25px;
+        }
+
+        .label {
+            background-color: #99ccff;
+        }
+        .btn {
+            padding: 5px 13px;
+            display: inline-block;
+            transition-duration: 0.2s;
+            cursor: pointer;
+        }
+        .btn1:hover {
+            background-color: #99ccff;
+            color: white;
+        }
+        .btn1 {
+            background-color: white;
+            color: black;
+            border: 2px solid #99ccff;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <h2><span class="glyphicon glyphicon-user"></span> 유저목록</h2>
+
+    <form method="POST" action="/userlist/Update">
+
+        <table class="table table-hover">
+            <colgroup>
+                <col width="10%">
+                <col width="10%">
+                <col width="10%">
+                <col width="15%">
+                <col width="15%">
+                <col width="15%">
+                <col width="*">
+            </colgroup>
+
+            <thead>
+            <tr>
+                <th>시퀀스</th>
+                <th>아이디</th>
+                <th>성명</th>
+                <th>이메일</th>
+                <th>전화번호</th>
+                <th>가입일자</th>
+                <th>수정</th>
+                <th>삭제</th>
+                <th>토큰발급</th>
+            </tr>
+            </thead>
+            <tr th:each="item:${list}" style="cursor:pointer;">
+                <td th:text="${item.seq}">SEQ</td>
+                <td th:text="${item.id}">id</td>
+                <td th:text="${item.name}">name</td>
+                <td th:text="${item.email}">email</td>
+                <td th:text="${item.tel}">tel</td>
+                <td th:text="${#dates.format(item.lastUpdate, 'yyyy년 MM월 dd일')}">lastUpdate</td>
+                <td th:attr="onclick=|editAction('${item.seq}', '${item.name}', '${item.email}', '${item.password}', '${item.id}', '${item.tel}')|"
+                    style="color:blue">
+                    수정
+                </td>
+                <td th:attr="onclick=|deleteProc('${item.seq}')|" style="color:red" class="delete">삭제</td>
+                <td th:attr="onclick=|tokenUrl('${item.id}')|" style="color:#307bae">토큰발급</td>
+            </tr>
+        </table>
+
+    </form>
+
+    <div class="form-group" th:if="${msg == true}">
+        <h3>
+            <span class="label">토큰이 발급되었습니다.</span>
+        </h3>
+    </div>
+</div>
+
+<div class="container">
+
+    <h2><span class="glyphicon glyphicon-user"></span> 계정 추가</h2>
+
+    <form method="POST" action="/userlist/addData">
+        <div>
+            <!-- <input type=“hidden”>은 사용자에게는 보이지 않는 숨겨진 입력 필드를 정의한다. -->
+            <!-- value값으로 선택할때 코드 내에서 지정하여 수정하거나 삭제 할 수 있다. -->
+            <input type="text" id="id" name="id" value="" placeholder="아이디를 입력하세요." size="20" style="border: 0;">
+            <input type="password" id="password" name="password" value="" placeholder="password 입력하세요." size="20"
+                   style="border: 0;">
+            <input type="text" id="name" name="name" value="" placeholder="이름을 입력하세요." size="20" style="border: 0;">
+            <input type="text" id="email" name="email" value="" placeholder="email 입력하세요." size="20"
+                   style="border: 0;">
+            <input type="text" id="tel" name="tel" value="" placeholder="전화번호를 입력하세요." size="20" style="border: 0;">
+            <!-- 시퀀스를 지정하여 수정하거나 삭제를 가능하도록 한다. -->
+            <input type="hidden" id="bbs_id" name="bbs_id">
+            <button id="btn_save" type="submit">저장</button>
+            <button type="button" onclick="editProc()">수정</button>
+            <button type="button" onclick="location.href='/login'">로그인</button>
+        </div>
+    </form>
+
+    <!-- 수정하기위해 이름을 가져와서 아이디를 edit_로 지정해준다 -->
+    <form method="post" action="/userlist/editData" id="edit_form">
+        <input type="hidden" id="edit_name" name="name">
+        <input type="hidden" id="edit_email" name="email">
+        <input type="hidden" id="edit_password" name="password">
+        <input type="hidden" id="edit_seq" name="seq">
+        <input type="hidden" id="edit_tel" name="tel">
+        <input type="hidden" id="edit_id" name="id">
+    </form>
+    <!-- 수정하기위해 이름을 가져와서 아이디를 delete_로 지정해준다 -->
+    <form method="post" action="/userlist/deleteData" id="delete_form">
+        <input type="hidden" id="delete_seq" name="seq">
+    </form>
+</div>
+<br>
+<div class="container">
+    <h2><span class="glyphicon glyphicon-user"></span> 토큰 발급</h2>
+    <input type="text" th:value="${jwt}" id="copyy" class="form-control" readonly="readonly"
+           style="border: 0; background-color: transparent;">
+    <button th:if="${copybtn == true}" class="btn btn-1 btn1" onclick="copyt()">복사</button>
+    <br><br><br>
+</div>
+
+</body>
+
+</html>

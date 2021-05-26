@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html class="no-js " lagn="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>설문조사작성</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+</head>
+<style>
+    table, th, td {
+        border: 1px solid #d9d9d9;
+    }
+
+    th {
+        background-color: #d1e5fa;
+    }
+    .btn {
+        padding: 10px 20px;
+        display: inline-block;
+        transition-duration: 0.2s;
+        cursor: pointer;
+    }
+    .btn-write {
+        background-color: white;
+        color: black;
+        border: 2px solid #99ccff;
+    }
+    .btn-write:hover {
+        background-color: #99ccff;
+        color: white;
+    }
+    .table>tbody>tr>th {
+        vertical-align: middle;
+    }
+    .glyphicon {
+        font-size: 25px;
+    }
+</style>
+<body>
+</head>
+<div class="container">
+    <div class="container-fluid">
+        <h2><span class="glyphicon glyphicon-ok"></span> 이벤트 추가</h2>
+
+        <form class="form-horizontal" action="/eventlist/eventInsert" method="post">
+            <table class="table table-bodered">
+                <colgroup>
+                    <col width="15%">
+                    <col width="*">
+                </colgroup>
+                <caption>이벤트 작성</caption>
+                <tbody>
+                <tr>
+                    <th scope="row">이벤트 제목</th>
+                    <td><input type="text" class="form-control" name="eventName" value="" placeholder="제목을 입력하세요"
+                               size="70" style="border: 0;" required/></td>
+                </tr>
+
+                <tr>
+                    <th scope="row">질문1</th>
+                    <td><input type="text" class="form-control" name="question1" value="" placeholder="질문을 입력하세요"
+                               size="70" style="border: 0;" required/></td>
+                </tr>
+
+                <tr>
+                    <th scope="row">질문2</th>
+                    <td><input type="text" class="form-control" name="question2" value="" placeholder="질문을 입력하세요"
+                               size="70" style="border: 0;" required/></td>
+                </tr>
+
+                <tr>
+                    <th scope="row">질문3</th>
+                    <td><input type="text" class="form-control" name="question3" value="" placeholder="질문을 입력하세요"
+                               size="70" style="border: 0;" required/></td>
+                </tr>
+
+                <tr>
+                    <th scope="row">질문4</th>
+                    <td><input type="text" class="form-control" name="question4" value="" placeholder="질문을 입력하세요"
+                               size="70" style="border: 0;" required/></td>
+                </tr>
+
+                <tr>
+                    <th scope="row">이벤트 시작일자</th>
+                    <td><input type="datetime-local" class="form-control" name="regDate" value="" placeholder="시작일자를 입력하세요"
+                               size="70" style="border: 0;" required/></td>
+                </tr>
+
+                <tr>
+                    <th scope="row">이벤트 종료일자</th>
+                    <td><input type="datetime-local" class="form-control" name="expiredDate" value="" placeholder="종료일자를 입력하세요"
+                               size="70" style="border: 0;" required/></td>
+                </tr>
+                </tbody>
+            </table>
+            <button type="submit" class="btn btn-write">추 가</button>
+        </form>
+
+    </div>
+</div>
+</body>
+
+</html>

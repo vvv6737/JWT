@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html class="no-js " lagn="ko"
+      xmlns:th="http://www.thymelaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/adminLayout}">
+<head>
+    <meta charset="UTF-8">
+    <title>설문 상세보기</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!--폰트-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <script>
+        function moveUrl(seq) {
+            window.location.href = '/list/boardDetail/' + seq;
+        }
+    </script>
+    <style>
+        .btn {
+            padding: 5px 13px;
+            display: inline-block;
+            transition-duration: 0.2s;
+            cursor: pointer;
+        }
+        .btn1:hover {
+            background-color: #7dd77d;
+            color: white;
+        }
+        .btn2:hover {
+            background-color: #77aef3;
+            color: white;
+        }
+        .btn3:hover {
+            background-color: #d65454;
+            color: white;
+        }
+        .btn1 {
+            background-color: white;
+            color: black;
+            border: 2px solid #7dd77d;
+        }
+        .btn2 {
+            background-color: white;
+            color: black;
+            border: 2px solid #77aef3;
+        }
+        .btn3 {
+            background-color: white;
+            color: black;
+            border: 2px solid #d65454;
+        }
+        .btn-reply {
+            background-color: white;
+            color: black;
+            border: 2px solid #a283e9;
+        }
+        .btn-reply:hover {
+            background-color: #a283e9;
+            color: white;
+        }
+        table, th, td {
+            border: 1px solid #d9d9d9;
+        }
+        th {
+            background-color: #e6e6ff;
+        }
+        .glyphicon {
+            font-size: 25px;
+        }
+        caption {
+            padding-top: 0px !important;
+            padding-bottom: 0px !important;
+            color: #777;
+            text-align: left;
+        }
+        .table>tbody>tr>td {
+            vertical-align: middle;
+        }
+        h2 {
+            font-family: 'Nanum Gothic', sans-serif;
+        }
+        .table>tbody>tr>th {
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-12 col-md-6">
+            <h2><span class="glyphicon glyphicon-ok"></span> 설문 상세보기</h2>
+        </div>
+
+        <div class="col-sm-12 col-md-6" style="text-align: right;"><br>
+            <button type="button" class="btn btn-1 btn1" th:onclick="'location.href = \'/eventlist/eventsession/' + ${boardDetail.eventSeq} + '\''">목록으로</button>
+            <button th:if="${admin != null}" type="button" class="btn btn-2 btn2"
+                    th:onclick="'location.href = \'/list/boardUpdate/' + ${boardDetail.seq} + '\''">수정
+            </button>
+            <button type="button" class="btn btn-3 btn3" th:if="${admin != null}"
+                    th:onclick="'location.href = \'/eventlist/eventDelete/' + ${boardDetail.seq} + '\''">삭제
+            </button>
+        </div>
+    </div>
+
+    <form class="form-horizontal" method="get" action="">
+
+        <div class="container">
+
+            <table class="table table-bodered">
+                <caption><h4>상세보기</h4></caption>
+                <colgroup>
+                    <col width="30%">
+                    <col width="30%">
+                    <col width="15%">
+                    <col width="*">
+                </colgroup>
+
+                <tbody>
+                <tr>
+                    <th>제목</th>
+                    <td th:text="${boardDetail.title}"/>
+                    <th>조회수</th>
+                    <td th:text="${boardDetail.boardHit}"></td>
+                </tr>
+                <tr>
+                    <th>작성자 아이디</th>
+                    <td th:text="${boardDetail.name}"/>
+                    <th>작성 날짜</th>
+                    <td colspan="3" th:text="${#dates.format(boardDetail.lastUpdate, 'yyyy년 MM월 dd일 HH:mm:ss')}"/>
+                </tr>
+                <tr>
+                    <th th:text="${boardDetail.question1}"></th>
+                    <td colspan="3" th:text="${boardDetail.responsegradle1}"/>
+                </tr>
+                <tr>
+                    <th th:text="${boardDetail.question2}"></th>
+                    <td colspan="3" th:text="${boardDetail.responsegradle2}"/>
+                </tr>
+                <tr>
+                    <th th:text="${boardDetail.question3}"></th>
+                    <td colspan="3" th:text="${boardDetail.responsegradle3}"/>
+                </tr>
+                <tr>
+                    <th th:text="${boardDetail.question4}"></th>
+                    <td colspan="3" th:text="${boardDetail.content}" style="white-space: pre-line;"/>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+
+    <hr>
+
+    <!--댓글-->
+    <div class="container">
+        <label for="content">답글</label>
+        <form method="post" action="/list/replyInsert"/>
+        <div class="input-group ">
+            <input type="hidden" name="seq" th:value="${boardDetail.seq}"/>
+            <input type="hidden" name="eventSeq" th:value="${boardDetail.eventSeq}"/>
+            <input th:if="${admin != null}" type="hidden" name="name" th:value="${admin.managerName}"/>
+            <input th:if="${admin != null}" type="text" class="form-control" name="recontent" placeholder="댓글을 입력하세요.">
+            <span th:if="${admin != null}" class="input-group-btn">
+                <button class="btn btn-reply" type="submit">등록</button>
+                <br>
+            </span>
+        </div>
+        </form>
+    </div>
+
+    <div class="container">
+        <form method="post" action="">
+            <div th:each="reply:${replyList}">
+
+                <div class="replyinfo">
+                    <p th:text="|댓글 번호 : ${reply.reseq} / |" style="display:inline"></p>
+                    <p th:text="|작성자 : ${reply.name}|" style="display:inline"></p>
+                    <div class="replyDate">
+
+                        <p th:text="|작성날짜 : ${#dates.format(reply.lastUpdate, 'yyyy-MM-dd HH:mm:ss')}|" style="display:inline"></p>
+                        <span th:if="${admin != null}">
+                            <a th:attr="onclick=|replyUpdateProc('${reply.recontent}')|">수정</a>
+                        </span>
+
+                        <span th:if="${admin != null}">
+                            <a th:onclick="'location.href = \'/list/replyDelete/' + ${reply.reseq} + '\''">삭제</a>
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="replyContent">
+                    <p th:text="|내용 : ${reply.recontent}|"></p>
+                    <hr>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+    <!-- 저장된 댓글을 보여주는 영역 -->
+    <!--<div class="container">
+        <h6 class="border-bottom pb-2 mb-0">Reply list</h6>
+        <form class="replyListForm" name="replyListForm">
+            <div id="replyList">
+            </div>
+        </form>
+    </div>-->
+
+</div>
+</body>
+
+<script>
+    /*$(document).ready(function(){
+            $(".btn-success").on("click",function(){
+                if("${user != null}"){
+                    alert("수정할 권한이 없습니다.");
+                    location.href="/list";
+                }
+            });
+
+        $(".btn-danger").on("click",function(){
+            if("${user == null}"){
+                alert("삭제할 권한이 없습니다.");
+                location.href="/list";
+            }
+        });
+    })*/
+
+    var seq = "${'boardDetail.seq'}"; //게시글 번호
+
+    $('[name=replyInsertBtn]').click(function () { //댓글 등록 버튼 클릭시
+        var insertData = $('[name=replyInsertForm]').serialize();	//replyInsertForm의 내용을 가져온다.
+        replyInsert(insertData); //Insert 함수호출
+    });
+
+    //댓글 목록
+    function replyList() {
+        $.ajax({
+            url: '/list/boardDetail',
+            type: 'get',
+            data: {'seq': seq},
+            success: function (data) {
+                var a = '';
+                $.each(data, function (key, value) {
+                    a += '<div class="replyArea style="border-bottom:1px solid darkgray; margin-bottom:15px;">';
+                    a += '<div class="replyInfo style=' + value.reseq + '">' + '댓글번호 : ' + value.reseq + ' / 작성자 : ' + value.name;
+                    a += '<a onclick="replyUpdate(' + value.reseq + ',\'' + value.reply + '\');">수정</a>';
+                    a += '<a onclick="replyDelete(' + value.reseq + ');">삭제</a></div>';
+                    a += '<div class="replyContent' + value.reseq + '"> <p> 내용 : ' + value.content + '</p>';
+                    a += '</div></div>';
+                });
+                $(".replyList").html(a);
+            }
+        });
+    }
+
+    //댓글 등록
+    function replyInsert(insertData) {
+        $.ajax({
+            url: '/list/replyInsert',
+            type: 'post',
+            data: insertData,
+            success: function (data) {
+                if (data == 1) {
+                    replyList(); //댓글 작성 후 댓글 목록 리로드
+                    $('[name=content]').val('');
+                }
+            }
+        });
+    }
+
+    //댓글 수정 - 댓글 내용 출력을 input 폼으로 변경
+    function replyUpdate(reseq, recontent) {
+        var a = '';
+
+        a += '<div class="input-group">';
+        a += '<input type="text" class="form-control" name="content_' + reseq + ' "th:value="' + recontent + '"/>';
+        a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="replyUpdateProc(' + ' reseq ' + ');">수정</button></sapn>';
+        a += '</div>';
+
+        $('.replyContent' + reseq).html(a);
+    }
+
+    //댓글 수정
+    function replyUpdateProc(reseq) {
+        var updateReply = $('[name=content_' + reseq + ']').val();
+
+        $.ajax({
+            url: '/list/replyUpdate',
+            type: 'post',
+            data: {'content': updateReply, 'reseq': reseq},
+            success: function (data) {
+                if (data == 1) replyList(seq); //댓글 수정후 목록 출력
+            }
+        });
+    }
+
+    //댓글 삭제
+    function replyDelete(reseq) {
+        $.ajax({
+            url: '/list/replyDelete/' + reseq,
+            type: 'post',
+            success: function (data) {
+                if (data == 1) replyList(seq); //댓글 수정후 목록 출력
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        replyList(); //페이지 로딩시 댓글 목록 출력
+    });
+</script>
+
+</html>

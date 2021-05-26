@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html class="no-js " lagn="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/adminLayout}">
+<head>
+    <meta charset="UTF-8">
+    <title>관리자</title>
+    <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+.navbar {
+    margin-bottom: 0px;
+}
+</style>
+<body>
+
+<iframe th:if="${admin != null}" src="http://localhost:8888/surveylist/1" width="100%" height="700px" style="border:1px ridge;"></iframe>
+
+</body>
+</html>

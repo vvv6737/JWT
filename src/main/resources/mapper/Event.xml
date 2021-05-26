@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.survey.admin.mapper.EventMapper">
+
+    <!-- 이벤트 리스트 -->
+    <select id="eventList" parameterType="java.util.HashMap" resultType="com.example.survey.admin.model.EventVO">
+        SELECT seq,
+               event_name as eventName,
+               question1,
+               question2,
+               question3,
+               question4,
+               reg_Date as regDate,
+               expired_Date as expiredDate
+        FROM event
+        ORDER BY seq ASC
+    </select>
+
+    <!--리스트 조회-->
+    <select id="eventBoard" resultType="com.example.survey.model.BoardVO" parameterType="int">
+        SELECT b.seq,
+               e.event_name as eventName,
+               b.content,
+               b.title,
+               b.last_update as lastUpdate,
+               b.user_seq as userSeq,
+               b.event_seq as eventSeq,
+               u.name,
+               boardHit
+        FROM bbs b
+                 LEFT JOIN user u
+                           ON b.user_seq = u.seq
+                 Left join event e
+                           on b.event_seq = e.seq
+        where b.event_seq = #{event_seq}
+        ORDER BY seq DESC
+    </select>
+
+    <!--해당 이벤트 리스트 세션-->
+    <select id="eventSession" parameterType="int" resultType="com.example.survey.admin.model.EventVO">
+        SELECT seq,
+               event_name as eventName,
+               question1,
+               question2,
+               question3,
+               question4,
+               reg_Date as regDate,
+               expired_Date as expiredDate
+        FROM event
+        where seq = #{seq}
+    </select>
+
+    <!--이벤트 등록-->
+    <insert id="eventBoardInsert" parameterType="com.example.survey.admin.model.EventVO" useGeneratedKeys="true" keyProperty="seq">
+        INSERT INTO bbs (event_name,
+                         title,
+                         question1,
+                         responsegradle1,
+                         question2,
+                         responsegradle2,
+                         question3,
+                         responsegradle3,
+                         question4,
+                         content,
+                         last_update,
+                         user_seq,
+                         event_seq,
+                         boardHit)
+        VALUES (#{eventName},
+                #{title},
+                #{question1},
+                #{responsegradle1},
+                #{question2},
+                #{responsegradle2},
+                #{question3},
+                #{responsegradle3},
+                #{question4},
+                #{content},
+                now(),
+                #{userSeq},
+                #{eventSeq},
+                #{boardHit})
+    </insert>
+
+    <!--이벤트 등록-->
+    <insert id="eventInsert" parameterType="com.example.survey.admin.model.EventVO" useGeneratedKeys="true" keyProperty="seq">
+        INSERT INTO event (event_name, question1, question2, question3, question4, reg_date, expired_date)
+        VALUES (#{eventName}, #{question1}, #{question2}, #{question3}, #{question4}, #{regDate}, #{expiredDate})
+    </insert>
+
+    <!-- 이벤트 상세보기 -->
+    <select id="eventDetail" parameterType="int" resultType="com.example.survey.admin.model.EventVO">
+        SELECT seq,
+               event_name as eventName,
+               question1,
+               question2,
+               question3,
+               question4,
+               reg_Date as regDate,
+               expired_Date as expiredDate
+        FROM event
+        where seq = ${seq}
+    </select>
+
+    <!-- 이벤트 삭제 -->
+    <delete id="eventDelete">
+        DELETE
+        FROM event
+        WHERE seq = #{seq}
+    </delete>
+
+</mapper>

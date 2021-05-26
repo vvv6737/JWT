@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html class="no-js " lagn="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>이벤트 리스트</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<script>
+    function moveUrl(seq) {
+        window.location.href = '/list/boardDetail/' + seq;
+    }
+    function moveEvent(seq) {
+        window.location.href = '/surveylist/' + seq;
+    }
+</script>
+
+<style>
+    .btn {
+        padding: 5px 13px;
+        display: inline-block;
+        transition-duration: 0.2s;
+        cursor: pointer;
+    }
+    .btn1:hover {
+        background-color: #99ccff;
+        color: white;
+    }
+    .btn1 {
+        background-color: white;
+        color: black;
+        border: 2px solid #99ccff;
+    }
+    .navbar {
+        margin-bottom: 0px;
+    }
+</style>
+<script>
+    function moveUrl(seq) {
+        window.location.href = '/eventlist/eventsession/' + seq;
+    }
+    function eventDetail(seq) {
+        window.location.href = '/eventlist/eventdetail/' + seq;
+    }
+</script>
+
+<body>
+
+<div class="container-fluid" style="background-color:#99ccff; color:#FFF; height:200px;">
+    <h1>관리자</h1>
+    <h3>관리자 페이지</h3>
+</div>
+
+<!-- 관리자 메뉴바 -->
+<nav class="navbar-default" style="height: 55px;">
+    <div class="container">
+
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/adminindex">Admin</a>
+        </div>
+
+        <div>
+            <div class="form-group collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            설문 관리 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/eventlist/eventwrite">설문조사 이벤트 추가</a></li>
+                            <li><a href="/surveylist/1">영화 만족도 설문조사</a></li>
+                            <li><a href="/userlist">유저목록</a></li>
+                            <li><a href="/eventlist">이벤트 목록</a></li>
+                        </ul>
+                    </li>
+
+                    <li th:if="${admin == null}">
+                        <a href="/adminloginform">로그인</a>
+                    </li>
+
+                    <li th:if="${admin != null}">
+                        <a href="/adminlogout" role="button">로그아웃</a>
+                    </li>
+
+                    <li th:if="${admin != null}">
+                        <a th:text="|${admin.managerName}님 환영합니다.|"/>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-6">
+            <h2><span class="glyphicon glyphicon-user"></span> 이벤트 목록</h2>
+        </div>
+
+        <div class="col-sm-12 col-md-6" style="text-align: right;"><br>
+            <button type="button" th:if="${admin != null}" class="btn btn-1 btn1" onclick="location.href='/eventlist/eventwrite'">이벤트 생성</button>
+        </div>
+    </div>
+
+    <table class="table table-hover">
+        <colgroup>
+            <col width="15%">
+            <col width="30%">
+            <col width="20%">
+            <col width="20%">
+            <col width="*">
+        </colgroup>
+
+        <thead>
+        <tr>
+            <th>번호</th>
+            <th>이벤트명</th>
+            <th>이벤트 시작일자</th>
+            <th>이벤트 종료일자</th>
+            <th>이벤트 상세보기</th>
+        </tr>
+        </thead>
+        <tr th:each="event:${eventlist}" style="cursor:pointer;">
+            <td th:text="${event.seq}" th:attr="onclick=|moveUrl(${event.seq})|">SEQ</td>
+            <td th:text="${event.eventName}" th:attr="onclick=|moveUrl(${event.seq})|">event_name</td>
+            <td th:text="${#dates.format(event.regDate, 'yyyy년 MM월 dd일')}" th:attr="onclick=|moveUrl(${event.seq})|">regDate</td>
+            <td th:text="${#dates.format(event.expiredDate, 'yyyy년 MM월 dd일')}" th:attr="onclick=|moveUrl(${event.seq})|">expiredDate</td>
+            <td th:attr="onclick=|eventDetail(${event.seq})|" style="color:#307bae;">상세보기</td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>

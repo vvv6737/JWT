@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html class="no-js " lagn="ko"
+      xmlns:th="http://www.thymelaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>설문정보</title>
+    <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <!-- 부가적인 테마 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+</head>
+
+<style>
+    table, th, td {
+        border: 1px solid #d9d9d9;
+    }
+
+    th {
+        background-color: #faddf8;
+    }
+
+    .btn {
+        padding: 5px 13px;
+        display: inline-block;
+        transition-duration: 0.2s;
+        cursor: pointer;
+    }
+
+    .btn-update {
+        background-color: white;
+        color: black;
+        border: 2px solid #4a00ff;
+    }
+
+    .btn-update:hover {
+        background-color: #4a00ff;
+        color: white;
+    }
+
+    .table > tbody > tr > th {
+        vertical-align: middle;
+    }
+
+    .table > tbody > tr > td {
+        vertical-align: middle;
+    }
+
+    .glyphicon {
+        font-size: 25px;
+    }
+</style>
+<body>
+
+<div class="container">
+    <div class="container-fluid">
+
+        <h2><span class="glyphicon glyphicon-ok"></span> 설 문 수 정</h2>
+
+        <form class="form-horizontal" action="/list/boardUpdateProc" method="post">
+            <input type="hidden" id="seq" name="seq" th:value="${board.seq}"/>
+            <table class="table table-bodered">
+                <caption><h4>기타의견만 수정 가능</h4></caption>
+                <colgroup>
+                    <col width="15%">
+                    <col width="35%">
+                    <col width="15%">
+                    <col width="*">
+                </colgroup>
+
+                <tbody>
+                <tr>
+                    <th>제목</th>
+                    <td>
+                        <input type="text" class="form-control" id="title" name="title" placeholder="제목을 입력하세요"
+                               th:value="${board.title}"/>
+                    </td>
+                    <th>평점</th>
+                    <td>${평점}</td>
+                </tr>
+                <tr>
+                    <th>작성자</th>
+                    <td>
+                        <input type="text" class="form-control" id="writer" name="writer" th:value="${board.name}"
+                               readonly="readonly"/>
+                    </td>
+                    <th>작성 날짜</th>
+                    <td th:text="${#dates.format(board.lastUpdate, 'yyyy년 MM월 dd일 HH:mm:ss')}"/>
+                </tr>
+                <tr>
+                    <th>선택한 점수</th>
+                    <td colspan="3" th:text="${board.responsegradle1}"/>
+                </tr>
+                <tr>
+                    <th>선택한 점수2</th>
+                    <td colspan="3" th:text="${board.responsegradle2}"/>
+                </tr>
+                <tr>
+                    <th>선택한 점수3</th>
+                    <td colspan="3" th:text="${board.responsegradle3}"/>
+                </tr>
+                <tr>
+                    <th>내용</th>
+                    <td colspan="3">
+                    <textarea cols="100" rows="10" class="form-control" id="content" name="content"
+                              placeholder="내용을 입력하세요" th:text="${board.content}" style="border: 0;"></textarea>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <button type="submit" class="btn btn-update">수 정</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html class="no-js " lagn="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/adminLayout}">
+<head>
+    <meta charset="UTF-8">
+    <title>설문조사글 목록</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!--폰트-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <script>
+        function moveUrl(seq) {
+            window.location.href = '/eventlist/eventsession/detail/' + seq;
+        }
+    </script>
+    <style>
+        .btn {
+            padding: 5px 15px;
+            display: inline-block;
+            transition-duration: 0.2s;
+            cursor: pointer;
+        }
+
+        .btn-1 {
+            padding: 5px 13px;
+            transition-duration: 0.2s;
+            cursor: pointer;
+        }
+
+        .btn1 {
+            background-color: white;
+            color: black;
+            border: 2px solid #99ccff;
+        }
+
+        .btn1:hover {
+            background-color: #99ccff;
+            color: white;
+        }
+
+        /*체크 아이콘*/
+        .glyphicon {
+            font-size: 25px;
+        }
+
+        h2 {
+            font-family: 'Nanum Gothic', sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-6">
+            <h2><span class="glyphicon glyphicon-ok"></span> <p th:text="${events.eventName}" style="display:inline"></p> </h2>
+        </div>
+
+        <div class="col-sm-12 col-md-6" style="text-align: right;"><br>
+            <button type="button" class="btn btn-1 btn1" onclick="location.href='/eventlist'">이벤트 목록으로</button>
+            </button>
+        </div>
+
+        <br>
+
+        <!--게시판 목록-->
+        <table class="table table-hover table-bodered">
+
+            <colgroup>
+                <col width="15%">
+                <col width="45%">
+                <col width="15%">
+                <col width="10%">
+                <col width="*">
+            </colgroup>
+
+            <thead>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>조회수</th>
+                <th>작성날짜</th>
+            </tr>
+            </thead>
+            <tr th:each="bbs:${boardlist}" style="cursor:pointer;">
+                <td th:text="${bbs.seq}" th:attr="onclick=|moveUrl(${bbs.seq})|">SEQ</td>
+
+                <td th:if="${admin == null}" th:attr="onclick=|moveUrl(${bbs.seq})|">비공개입니다.</td>
+                <td th:if="${admin == null}" th:attr="onclick=|moveUrl(${bbs.seq})|">비공개입니다.</td>
+
+                <td th:if="${admin != null}" th:text="${bbs.title}" th:attr="onclick=|moveUrl(${bbs.seq})|">TITLE</td>
+                <td th:if="${admin != null}" th:text="${bbs.name}" th:attr="onclick=|moveUrl(${bbs.seq})|">NAME</td>
+                <td th:text="${bbs.boardHit}" th:attr="onclick=|moveUrl(${bbs.seq})|">BOARDHIT</td>
+                <td th:text="${#dates.format(bbs.lastUpdate, 'yyyy년 MM월 dd일')}" th:attr="onclick=|moveUrl(${bbs.seq})|">
+                    UPDATE
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

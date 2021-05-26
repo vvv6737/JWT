@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.survey.mapper.UserMapper">
+
+    <select id="userCheck" resultType="com.example.survey.model.UserVO">
+        SELECT seq,
+               name,
+               email,
+               last_update,
+               id,
+               tel
+        FROM user
+        WHERE email = #{email}
+          AND password = #{password}
+    </select>
+
+    <!--아이디로 토큰 발급-->
+    <select id="urlTest" parameterType="String" resultType="com.example.survey.model.UserVO">
+        SELECT u.seq,
+               u.name,
+               u.email,
+               u.last_update,
+               u.id,
+               u.tel,
+               u.event_seq
+        FROM user u
+        where id = #{id}
+    </select>
+
+    <select id="isFinishSurvey" parameterType="String" resultType="com.example.survey.model.UserVO">
+        SELECT u.`seq`,
+               u.`name`,
+               u.`email`,
+               u.`last_update`,
+               u.`id`,
+               u.`tel`,
+               b.`event_seq` as eventSeq
+        FROM bbs b
+                 LEFT JOIN user u
+                           ON b.user_seq = u.seq
+        where u.id = ${id}
+        /*and e.event_seq = ${seq}*/
+    </select>
+
+    <!--리스트-->
+    <select id="listUser" resultType="com.example.survey.model.UserVO">
+        SELECT
+        seq,
+        name,
+        email,
+        last_update as lastUpdate,
+        id,
+        tel
+        FROM user
+        <where>
+            <if test="name != null and name != ''">
+                AND name = #{name}
+            </if>
+            <if test="email != null and email != ''">
+                AND email = #{email}
+            </if>
+        </where>
+    </select>
+
+    <!-- 입력 -->
+    <!-- useGeneratedKeys - 데이터 베이스에서 내부적으로 생성한키 SQL서버와 같은 getGeneratedKeys메소들르 사용하도록 설정하다. -->
+    <!-- keyProperty - getGeneratedKeys메소드나 insert구문의 selectKey하위 엘리먼트에 의해 리턴된 키를 셋팅할 프로퍼티를 지정한다. -->
+    <insert id="userInsert" parameterType="com.example.survey.model.UserVO" useGeneratedKeys="true" keyProperty="seq">
+        INSERT INTO user (name, email, password, last_update, tel, id, event_seq)
+        VALUES (#{name}, #{email}, #{password}, now(), #{tel}, #{id}, #{eventSeq})
+    </insert>
+
+    <!-- 수정 -->
+    <update id="userUpdate" parameterType="com.example.survey.model.UserVO">
+        UPDATE user
+        SET name  = #{name},
+            email = #{email},
+            id = #{id},
+            tel = #{tel}
+        WHERE seq = #{seq}
+    </update>
+
+    <!-- 삭제 -->
+    <delete id="userDelete" parameterType="com.example.survey.model.UserVO">
+        DELETE
+        FROM user
+        WHERE seq = #{seq}
+    </delete>
+</mapper>
