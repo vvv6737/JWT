@@ -27,6 +27,7 @@
         function moveUrl(seq) {
             window.location.href = '/surveylist/boardDetail/' + seq;
         }
+
         function moveEvent(seq) {
             window.location.href = '/surveylist/' + seq;
         }
@@ -37,28 +38,11 @@
             font-family: "Roboto", sans-serif
         }
 
-        .btn {
-            padding: 8px 10px;
-            background-color: #333;
-            color: #f1f1f1;
-            border-radius: 4;
-            transition: .2s;
-            margin-left: 35%;
-        }
-
         .carousel-inner img {
             -webkit-filter: grayscale(45%);
             filter: grayscale(45%); /* make all photos black and white */
             width: 75%;
             margin: auto;
-        }
-
-        .thumbnail {
-            margin-top: 10px;
-            font-size: 15px;
-            padding: 0 0 15px 0;
-            border: 2;
-            border-radius: 4;
         }
     </style>
 
@@ -77,7 +61,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/surveylist/1">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/product/productlist">
             <div class="sidebar-brand-icon rotate-n-0">
                 <i class="fas fa-address-card"></i>
             </div>
@@ -159,6 +143,19 @@
             <!-- Topbar -->
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
+                <!-- Topbar Search -->
+                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <div class="input-group">
+                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                               aria-label="Search" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
                 <!-- Sidebar Toggle (Topbar) -->
                 <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                     <i class="fa fa-bars"></i>
@@ -235,66 +232,64 @@
             </nav>
             <!-- End of Topbar -->
 
-            <div class="row">
+            <!-- Pie Chart -->
+            <div class="container-fluid">
+                <div class="row">
 
-                <div class="col-sm-13">
-                    <br>
-                    <div class="col-sm-3" th:each="product:${list}">
-                        <div class="thumbnail">
-                            <img th:src="@{${'../upload/' + product.productimageName}}" alt="이미지 업로드"
-                                 style="background-size: contain;"/>
-                            <br>
-                            <ul>
-                                <li th:text="|제품명 : ${product.productname}|"></li>
-                                <li th:text="|가격 : ${product.productprice}원|"></li>
-                            </ul>
-                            <button class="btn" data-toggle="modal" data-target="#myModal"
-                                    th:attr="onclick=|moveProduct(${product.productno})|">자세히 보기
-                            </button>
+                    <div class="col-xl-3 col-lg-4" th:each="product:${list}">
+                        <div class="card shadow mb-3">
+                            <!-- Card Header - Dropdown -->
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary" th:text="${product.productname}"></h6>
+                                <div class="dropdown no-arrow">
+                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                         aria-labelledby="dropdownMenuLink">
+                                        <div class="dropdown-header">Dropdown Header:</div>
+                                        <a class="dropdown-item" href="#">Action</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card Body -->
+                            <div class="card-body">
+                                <div>
+                                    <div class="thumbnail">
+                                        <img th:src="@{${'../upload/' + product.productimageName}}" alt="이미지 업로드"
+                                             style="width: 100%;margin-bottom: 10px;"/>
+                                        <br>
+                                        <ul>
+                                            <li th:text="|제품명 : ${product.productname}|"></li>
+                                            <li th:text="|가격 : ${product.productprice}원|"></li>
+                                        </ul>
+
+                                        <a th:attr="onclick=|moveProduct(${product.productno})|"
+                                           class="btn btn-secondary btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-search"></i>
+                                        </span>
+                                            <span class="text">View more</span>
+                                        </a>
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                 </div>
-
             </div>
 
-
         </div>
+
     </div>
 </div>
-
-<script>
-    $(document).ready(
-        function () {
-            // Initialize Tooltip
-            $('[data-toggle="tooltip"]').tooltip();
-
-            // Add smooth scrolling to all links in navbar + footer link
-            $(".navbar a, footer a[href='#myPage']").on('click',
-                function (event) {
-
-                    // Make sure this.hash has a value before overriding default behavior
-                    if (this.hash !== "") {
-
-                        // Prevent default anchor click behavior
-                        event.preventDefault();
-
-                        // Store hash
-                        var hash = this.hash;
-
-                        // Using jQuery's animate() method to add smooth page scroll
-                        // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
-                        $('html, body').animate({
-                            scrollTop: $(hash).offset().top
-                        }, 900, function () {
-
-                            // Add hash (#) to URL when done scrolling (default click behavior)
-                            window.location.hash = hash;
-                        });
-                    } // End if
-                });
-        })
-</script>
+</div>
 
 <!-- Bootstrap core JavaScript-->
 <script src="/vendor/jquery/jquery.min.js"></script>

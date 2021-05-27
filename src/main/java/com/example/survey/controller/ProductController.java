@@ -26,7 +26,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
-
 @Controller
 @RequestMapping("/product")
 public class ProductController {
@@ -78,7 +77,7 @@ public class ProductController {
             String destinationFileName;
 
             // fileUrl = "uploadFiles 폴더의 위치";
-            String productimageUrl = "/Users/sam/Desktop/survey/src/main/resources/static/upload/";
+            String productimageUrl = "/Users/mac/Desktop/survey/src/main/resources/static/upload/";
 
             do {
                 destinationFileName = RandomStringUtils.randomAlphanumeric(32) + "." + fileNameExtension;
@@ -127,6 +126,9 @@ public class ProductController {
 
         AdminVO admin = SessionUtils.getAdmin(request);
         model.addAttribute("admin", admin);
+
+        UserVO userVO = SessionUtils.getUser(request);
+        model.addAttribute("user", userVO);
 
         return "pages/product/productlist";
     }//end - private String ProductList( Model model, @RequestParam(required = false, defaultValue = "1") int page,
