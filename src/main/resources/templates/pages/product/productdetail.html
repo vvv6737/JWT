@@ -37,17 +37,18 @@
         </tr>
         </thead>
         <tr>
-            <td><img src="/static/upload/${productdetail.productimageName}" alt="이미지 업로드">
             <td>
+                <img th:src="@{${'../../upload/' + productdetail.productimageName}}" alt="이미지 업로드" style="width: 40%; cursor: pointer;"/>
+            </td>
         </tr>
     </table>
     <form action="/cart/insertCart" method="post">
         <div class="input-group">
             <input type="hidden" name="cartproductid" th:value="${productdetail.productno}"/>
             <input type="hidden" id="productname" name="productname" th:value="${productdetail.productname}"/>
-            <!--  <input type="hidden" id="cartno" name="cartno" value="${insertCart.cartno}"/>-->
-            <!--  <input type="hidden" id="cartproductid" name="cartproductid" value="${productdetail.productno}"/>-->
-            <input type="hidden" id="cartuserid" name="cartuserid" th:value="${member.userId}"/>
+
+            <input th:if="${user != null}" type="hidden" id="cartuserid" name="cartuserid" th:value="${user.id}"/>
+
             <input type="hidden" id="productimagefile" name="productimagefile"
                    th:value="${productdetail.productimagefile}"/>
             <input type="hidden" id="produtimageName" name="productimageName"
@@ -58,7 +59,7 @@
             <input type="hidden" id="productprice" name="productprice" th:value="${productdetail.productprice}"/>
             <input type="hidden" id="productsalescnt" name="productsalescnt" th:value="${productdetail.productsalescnt}"/>
         </div>
-        <div th:if="${member != null}">
+        <div th:if="${user != null}">
             <select name="수량~">
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -72,7 +73,7 @@
             <input type="submit" value="장바구니담기">
         </div>
     </form>
-    <div th:if="${member == null}">
+    <div th:if="${user == null}">
         <select name="수량~">
             <option value="1">1</option>
             <option value="2">2</option>
@@ -81,7 +82,7 @@
             <option value="5">5</option>
         </select>
         <button class="btn btn-warning"
-                onclick="location.href='/login/login',alert('로그인 필요')">구매 하기
+                onclick="location.href='/login',alert('로그인이 필요합니다.')">구매 하기
         </button>
 
         <button class="btn btn-danger" th:if="${admin != null}"

@@ -10,7 +10,9 @@ import com.example.survey.admin.model.EventVO;
 import com.example.survey.admin.service.EventService;
 import com.example.survey.model.Pagination;
 import com.example.survey.model.ProductVO;
+import com.example.survey.model.UserVO;
 import com.example.survey.service.ProductService;
+import com.example.survey.service.UserService;
 import com.example.survey.utils.SessionUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -31,8 +33,12 @@ public class ProductController {
 
     @Autowired
     ProductService productService;
+
     @Autowired
     EventService eventService;
+
+    @Autowired
+    UserService userService;
 
     // 웹 브라우저에서 http://localhost:8888/Product/Productinsert 로 호출한다.
     @RequestMapping("/productinsert")
@@ -45,7 +51,6 @@ public class ProductController {
         AdminVO admin = SessionUtils.getAdmin(request);
         model.addAttribute("admin", admin);
 
-        System.out.println("Controller insert......");
         return "pages/product/productinsert";
     }//end - private String boardInsertForm()
 
@@ -73,7 +78,7 @@ public class ProductController {
             String destinationFileName;
 
             // fileUrl = "uploadFiles 폴더의 위치";
-            String productimageUrl = "/Users/mac/Desktop/survey/src/main/resources/static/upload/";
+            String productimageUrl = "/Users/sam/Desktop/survey/src/main/resources/static/upload/";
 
             do {
                 destinationFileName = RandomStringUtils.randomAlphanumeric(32) + "." + fileNameExtension;
@@ -102,7 +107,7 @@ public class ProductController {
 
     // 목록 보여주기
     @RequestMapping(value = "/productlist", method = RequestMethod.GET)
-    private String ProductList(Model model, @RequestParam(required = false, defaultValue = "1") int page,
+    private String ProductList(Model model, EventVO eventVO, HttpServletRequest request, @RequestParam(required = false, defaultValue = "1") int page,
                                @RequestParam(required = false, defaultValue = "1") int range) throws Exception {
 
         // 전체 게시글 개수
@@ -116,6 +121,12 @@ public class ProductController {
         model.addAttribute("pagination", pagination);
 
         model.addAttribute("list", productService.productListService(pagination));
+
+        List<EventVO> eventlist = eventService.eventList(eventVO);
+        model.addAttribute("eventlist", eventlist);
+
+        AdminVO admin = SessionUtils.getAdmin(request);
+        model.addAttribute("admin", admin);
 
         return "pages/product/productlist";
     }//end - private String ProductList( Model model, @RequestParam(required = false, defaultValue = "1") int page,
@@ -146,12 +157,19 @@ public class ProductController {
 
     // 게시글 번호에 해당하는 상세정보화면
     @RequestMapping("/productdetail/{productno}")
-    private String boardDetail(@PathVariable int productno, HttpServletRequest request, Model model) throws Exception {
+    private String boardDetail(@PathVariable int productno, EventVO eventVO, HttpServletRequest request, Model model) throws Exception {
+
+        AdminVO admin = SessionUtils.getAdmin(request);
+        model.addAttribute("admin", admin);
+
+        UserVO userVO = SessionUtils.getUser(request);
+        model.addAttribute("user", userVO);
+
+        List<EventVO> eventlist = eventService.eventList(eventVO);
+        model.addAttribute("eventlist", eventlist);
 
         // bno에 해당하는 자료를 찾아와서 model에 담는다.
         model.addAttribute("productdetail", productService.productDetailService(productno)); // 게시글의 정보를 가져와서 저장한다.
-        //model.addAttribute("files", productService.fileDetailService(bno)); // 파일의 정보를 가져와서 저장한다.
-
 
         return "pages/product/productdetail";
     }

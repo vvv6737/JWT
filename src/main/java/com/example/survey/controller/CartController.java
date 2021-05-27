@@ -46,9 +46,7 @@ public class CartController {
 		logger.info("cartuserid : " + cartuserid);
 		
 		////cartService.insertCart(cartDTO);
-	
-	
-		
+
 		model.addAttribute("inserCart", cartService.insertCart(cartVO));
 		
 
