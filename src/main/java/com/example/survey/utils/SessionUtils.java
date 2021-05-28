@@ -2,6 +2,7 @@ package com.example.survey.utils;
 
 import com.example.survey.admin.model.AdminVO;
 import com.example.survey.admin.model.EventVO;
+import com.example.survey.model.ProductVO;
 import com.example.survey.model.UserVO;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,7 @@ public class SessionUtils {
     final static String SESSION_ADMIN_KEY = "ADMIN_KEY";
 
     final static String SESSION_EVENT_LIST = "EVENT_LIST";
+    final static String SESSION_PRODUCT_LIST = "PRODUCT_LIST";
 
     public static boolean setUser(UserVO user, HttpServletRequest request){
         if (user == null) return false;
@@ -36,6 +38,14 @@ public class SessionUtils {
         return true;
     }
 
+    //상품 리스트
+    public static boolean setProductList(ProductVO productVO, HttpServletRequest request){
+        if (productVO == null) return false;
+        HttpSession session = request.getSession();
+        session.setAttribute(SESSION_PRODUCT_LIST, productVO);
+        return true;
+    }
+
     public static UserVO getUser(HttpServletRequest request) {
         HttpSession session = request.getSession();
         return (UserVO) session.getAttribute(SESSION_USER_KEY);
@@ -50,5 +60,11 @@ public class SessionUtils {
     public static EventVO getEventList(HttpServletRequest request) {
         HttpSession session = request.getSession();
         return (EventVO) session.getAttribute(SESSION_EVENT_LIST);
+    }
+
+    //상품 리스트
+    public static ProductVO getProductList(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        return (ProductVO) session.getAttribute(SESSION_PRODUCT_LIST);
     }
 }

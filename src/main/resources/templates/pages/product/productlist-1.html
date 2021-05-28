@@ -87,7 +87,7 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Product Utilities:</h6>
                     <a class="collapse-item" href="../productlist">전체상품</a>
-                    <a class="collapse-item" th:each="event:${eventlist}" th:attr="onclick=|moveCategory(${event.seq})|" th:text="${event.Category}"></a>
+                    <a class="collapse-item" th:each="event:${eventlist}" th:attr="onclick=|moveCategory(${event.seq})|" th:text="${event.Category}" style="cursor:pointer;"></a>
                 </div>
             </div>
         </li>
@@ -118,9 +118,9 @@
             <div id="collapseSurveys" class="collapse" aria-labelledby="headingUtilities"
                  data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Product Utilities:</h6>
+                    <h6 class="collapse-header">survey Utilities:</h6>
                     <a class="collapse-item" th:each="event:${eventlist}" th:attr="onclick=|moveEvent(${event.seq})|"
-                       th:text="${event.eventName}"></a>
+                       th:text="${event.eventName}" style="cursor:pointer;"></a>
                 </div>
             </div>
         </li>
@@ -234,7 +234,7 @@
             <!-- Pie Chart -->
             <div class="container-fluid">
 
-                <h1><p class="h3 mb-2 text-gray-800" th:text="${eventlist.Category}" style="display:inline;"></p></h1>
+                <!--<h1><p class="h3 mb-2 text-gray-800" th:text="${product.category}" style="display:inline;"></p></h1>-->
 
                 <div class="row">
 

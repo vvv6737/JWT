@@ -25,8 +25,18 @@
     <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
     <script>
+        function moveUrl(seq) {
+            window.location.href = '/surveylist/boardDetail/' + seq;
+        }
+
         function moveEvent(seq) {
             window.location.href = '/surveylist/' + seq;
+        }
+        function moveCategory(seq) {
+            window.location.href = '/product/productlist/' + seq;
+        }
+        function moveProduct(productno) {
+            window.location.href = '/product/productdetail/' + productno;
         }
     </script>
 
@@ -109,30 +119,71 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/product/productlist">
             <div class="sidebar-brand-icon rotate-n-0">
                 <i class="fas fa-address-card"></i>
             </div>
-            <div class="sidebar-brand-text mx-3">Survey Lists</div>
+            <div class="sidebar-brand-text mx-3">survey Lists</div>
         </a>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Products Lists
+        </div>
+
+        <!-- Nav Item - Utilities Collapse Menu -->
+        <li class="nav-item active">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProducts"
+               aria-expanded="true" aria-controls="collapseProducts">
+                <i class="fas fa-box"></i>
+                <span>상품목록</span>
+            </a>
+            <div id="collapseProducts" class="collapse" aria-labelledby="headingUtilities"
+                 data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Product Utilities:</h6>
+                    <a class="collapse-item" href="../../product/productlist">전체상품</a>
+                    <a class="collapse-item" th:each="event:${eventlist}" th:attr="onclick=|moveCategory(${event.seq})|"
+                       th:text="${event.Category}" style="cursor:pointer;"></a>
+                </div>
+            </div>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="charts.html">
+                <i class="fas fa-shopping-cart"></i>
+                <span>장바구니</span>
+            </a>
+        </li>
+
 
         <!-- Divider -->
         <hr class="sidebar-divider">
 
         <!-- Heading -->
         <div class="sidebar-heading">
-            Lists
+            Survey Lists
         </div>
 
-        <li class="nav-item active" th:each="event:${eventlist}">
-            <a class="nav-link">
+        <!-- Nav Item - Utilities Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSurveys"
+               aria-expanded="true" aria-controls="collapseSurveys">
                 <i class="fas fa-fw fa-table"></i>
-                <span th:text="${event.eventName}" th:attr="onclick=|moveEvent(${event.seq})|" style="cursor:pointer;">Survey Lists</span>
+                <span>설문 이벤트 목록</span>
             </a>
+            <div id="collapseSurveys" class="collapse" aria-labelledby="headingUtilities"
+                 data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">survey Utilities:</h6>
+                    <a class="collapse-item" th:each="event:${eventlist}" th:attr="onclick=|moveEvent(${event.seq})|"
+                       th:text="${event.eventName}" style="cursor:pointer;"></a>
+                </div>
+            </div>
         </li>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider d-none d-md-block">
 
         <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">
@@ -151,39 +202,59 @@
             <!-- Topbar -->
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-                <!-- Sidebar Toggle (Topbar) -->
-                <form class="form-inline">
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
+                <!-- Topbar Search -->
+                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <div class="input-group">
+                        <input type="text" class="form-control bg-light border-0 small" placeholder="원하는 품목을 검색하세요."
+                               aria-label="Search" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </div>
+                    </div>
                 </form>
+
+                <!-- Sidebar Toggle (Topbar) -->
+                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                    <i class="fa fa-bars"></i>
+                </button>
 
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
 
-                    <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                    <li class="nav-item dropdown no-arrow d-sm-none">
-                        <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                    <!-- Nav Item - Messages -->
+                    <li class="nav-item dropdown no-arrow mx-1">
+                        <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-search fa-fw"></i>
+                            <i class="fas fa-shopping-cart"></i>
+                            <!-- Counter - Messages -->
+                            <span class="badge badge-danger badge-counter">7</span>
                         </a>
                         <!-- Dropdown - Messages -->
-                        <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                             aria-labelledby="searchDropdown">
-                            <form class="form-inline mr-auto w-100 navbar-search">
-                                <div class="input-group">
-                                    <input type="text" class="form-control bg-light border-0 small"
-                                           placeholder="Search for..." aria-label="Search"
-                                           aria-describedby="basic-addon2">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-primary" type="button">
-                                            <i class="fas fa-search fa-sm"></i>
-                                        </button>
-                                    </div>
+                        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                             aria-labelledby="messagesDropdown">
+                            <h6 class="dropdown-header">
+                                장바구니
+                            </h6>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <div class="dropdown-list-image mr-3">
+                                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
+                                         alt="...">
+                                    <div class="status-indicator bg-success"></div>
                                 </div>
-                            </form>
+                                <div>
+                                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone
+                                        told me that people say this to all dogs, even if they aren't good...
+                                    </div>
+                                    <div class="small text-gray-500">Chicken the Dog · 2w</div>
+                                </div>
+                            </a>
+                            <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
                         </div>
                     </li>
+
+                    <div class="topbar-divider d-none d-sm-block"></div>
 
                     <!-- Nav Item - User Information -->
                     <li th:if="${user != null}" class="nav-item dropdown no-arrow">
@@ -192,7 +263,8 @@
                             <span class="mr-2 d-none d-lg-inline text-gray-600 small">
                                 <p class="user" th:text="${user.name}" style="display:inline"></p>
                             </span>
-                            <img class="img-profile rounded-circle" src="/img/undraw_profile.svg">
+                            <img class="img-profile rounded-circle"
+                                 src="/img/undraw_profile.svg">
                         </a>
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -210,10 +282,10 @@
                     <li th:if="${user == null}" class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" onclick="location.href='/login'" style="cursor:pointer;">
                             <span class="mr-2 d-none d-lg-inline text-gray-600 small">LOGIN</span>
-                            <img class="img-profile rounded-circle" src="/img/noprofile.jpeg">
+                            <img class="img-profile rounded-circle"
+                                 src="/img/noprofile.jpeg">
                         </a>
                     </li>
-
                 </ul>
 
             </nav>

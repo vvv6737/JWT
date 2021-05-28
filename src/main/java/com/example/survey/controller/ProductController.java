@@ -140,7 +140,11 @@ public class ProductController {
 
     // 게시글 카테고리 목록 보여주기
     @RequestMapping(value = "/productlist/{productid}", method = RequestMethod.GET)
-    private String ProductcateList(@PathVariable int productid, Model model, EventVO eventVO) throws Exception {
+    private String ProductcateList(@PathVariable int productid, Model model, EventVO eventVO, HttpServletRequest request) throws Exception {
+
+        SessionUtils.setEventList(eventVO, request);
+        ProductVO productVO = SessionUtils.getProductList(request);
+        model.addAttribute("product", productVO);
 
         // 전체 게시글 개수
         int listCnt = productService.getProductListCnt();
