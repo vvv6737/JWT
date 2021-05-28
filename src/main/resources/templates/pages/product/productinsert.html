@@ -54,7 +54,7 @@
 			<label for="productid">해당 상품 설문조사 선택</label><br>
 			<select name="productid" id="productid">
 			    <option value="">종류 선택</option>
-				<option th:each="ev:${eventlist}" th:text="${ev.eventName}" th:value="${ev.seq}"></option>
+				<option th:each="ev:${eventlist}" th:text="${ev.Category}" th:value="${ev.seq}"></option>
 			</select>
 		</div>
 		<div class="form-group">			

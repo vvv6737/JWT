@@ -13,7 +13,8 @@
                question3,
                question4,
                reg_Date as regDate,
-               expired_Date as expiredDate
+               expired_Date as expiredDate,
+               category
         FROM event
         ORDER BY seq ASC
     </select>
@@ -47,7 +48,8 @@
                question3,
                question4,
                reg_Date as regDate,
-               expired_Date as expiredDate
+               expired_Date as expiredDate,
+               category
         FROM event
         where seq = #{seq}
     </select>
@@ -86,8 +88,8 @@
 
     <!--이벤트 등록-->
     <insert id="eventInsert" parameterType="com.example.survey.admin.model.EventVO" useGeneratedKeys="true" keyProperty="seq">
-        INSERT INTO event (event_name, question1, question2, question3, question4, reg_date, expired_date)
-        VALUES (#{eventName}, #{question1}, #{question2}, #{question3}, #{question4}, #{regDate}, #{expiredDate})
+        INSERT INTO event (event_name, question1, question2, question3, question4, reg_date, expired_date, category)
+        VALUES (#{eventName}, #{question1}, #{question2}, #{question3}, #{question4}, #{regDate}, #{expiredDate}, #{Category})
     </insert>
 
     <!-- 이벤트 상세보기 -->
@@ -99,7 +101,8 @@
                question3,
                question4,
                reg_Date as regDate,
-               expired_Date as expiredDate
+               expired_Date as expiredDate,
+               category
         FROM event
         where seq = ${seq}
     </select>

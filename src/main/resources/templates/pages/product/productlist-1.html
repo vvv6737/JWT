@@ -40,15 +40,14 @@
     </script>
 
     <style>
-        .w3-sidebar a {
-            font-family: "Roboto", sans-serif
-        }
-
         .carousel-inner img {
             -webkit-filter: grayscale(45%);
             filter: grayscale(45%); /* make all photos black and white */
             width: 75%;
             margin: auto;
+        }
+        .mb-4 {
+            margin-bottom: 1rem !important;
         }
     </style>
 </head>
@@ -87,7 +86,7 @@
                  data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Product Utilities:</h6>
-                    <a class="collapse-item" href="../product/productlist">전체상품</a>
+                    <a class="collapse-item" href="../productlist">전체상품</a>
                     <a class="collapse-item" th:each="event:${eventlist}" th:attr="onclick=|moveCategory(${event.seq})|" th:text="${event.Category}"></a>
                 </div>
             </div>
@@ -235,7 +234,7 @@
             <!-- Pie Chart -->
             <div class="container-fluid">
 
-                <h1><p class="h3 mb-2 text-gray-800" style="display:inline;">전체 상품</p></h1>
+                <h1><p class="h3 mb-2 text-gray-800" th:text="${eventlist.Category}" style="display:inline;"></p></h1>
 
                 <div class="row">
 
@@ -256,7 +255,7 @@
                                         <a class="dropdown-item" href="#">삭제</a>
                                         <a class="dropdown-item" href="#">수정</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">장바구니 담기</a>
+                                        <a class="dropdown-item" href="#">Something else here</a>
                                     </div>
                                 </div>
 
@@ -265,7 +264,7 @@
                             <div class="card-body">
                                 <div>
                                     <div class="thumbnail">
-                                        <img th:src="@{${'../upload/' + product.productimageName}}" alt="이미지 업로드"
+                                        <img th:src="@{${'../../upload/' + product.productimageName}}" alt="이미지 업로드"
                                              style="width: 100%;margin-bottom: 10px;"/>
                                         <br>
                                         <ul>

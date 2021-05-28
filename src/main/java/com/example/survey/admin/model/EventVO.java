@@ -11,7 +11,15 @@ public class EventVO {
     private String question4; // 이벤트 게시물 질문
     private Date regDate; // 이벤트 생성날짜
     private Date expiredDate; // 이벤트 종료일자
+    private String Category; // 카테고리
 
+    public String getCategory() {
+        return Category;
+    }
+
+    public void setCategory(String category) {
+        Category = category;
+    }
 
     public String getEventName() {
         return eventName;

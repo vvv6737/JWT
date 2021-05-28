@@ -50,7 +50,11 @@ public class ProductController {
         AdminVO admin = SessionUtils.getAdmin(request);
         model.addAttribute("admin", admin);
 
-        return "pages/product/productinsert";
+        if (admin == null) {
+            return "redirect:/adminloginform";
+        }else {
+            return "pages/product/productinsert";
+        }
     }//end - private String boardInsertForm()
 
     // Controller 에서 Multipart 를 @RequestParet 어노테이션을 통해 별도의 설정없이 사용할 수 있다.
@@ -77,7 +81,7 @@ public class ProductController {
             String destinationFileName;
 
             // fileUrl = "uploadFiles 폴더의 위치";
-            String productimageUrl = "/Users/mac/Desktop/survey/src/main/resources/static/upload/";
+            String productimageUrl = "/Users/sam/Desktop/survey/src/main/resources/static/upload/";
 
             do {
                 destinationFileName = RandomStringUtils.randomAlphanumeric(32) + "." + fileNameExtension;
@@ -136,7 +140,7 @@ public class ProductController {
 
     // 게시글 카테고리 목록 보여주기
     @RequestMapping(value = "/productlist/{productid}", method = RequestMethod.GET)
-    private String ProductcateList(@PathVariable int productid, Model model) throws Exception {
+    private String ProductcateList(@PathVariable int productid, Model model, EventVO eventVO) throws Exception {
 
         // 전체 게시글 개수
         int listCnt = productService.getProductListCnt();
@@ -154,7 +158,10 @@ public class ProductController {
 
         model.addAttribute("list", productService.productcateListService(pagination));
 
-        return "pages/product/productlist";
+        List<EventVO> eventlist = eventService.eventList(eventVO);
+        model.addAttribute("eventlist", eventlist);
+
+        return "pages/product/productlist-1";
     }//end - private String ProductcateList(@PathVariable int productid, Model model) throws Exception
 
     // 게시글 번호에 해당하는 상세정보화면
