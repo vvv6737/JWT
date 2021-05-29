@@ -81,7 +81,7 @@ public class ProductController {
             String destinationFileName;
 
             // fileUrl = "uploadFiles 폴더의 위치";
-            String productimageUrl = "/Users/sam/Desktop/survey/src/main/resources/static/upload/";
+            String productimageUrl = "/Users/mac/Desktop/survey/src/main/resources/static/upload/";
 
             do {
                 destinationFileName = RandomStringUtils.randomAlphanumeric(32) + "." + fileNameExtension;

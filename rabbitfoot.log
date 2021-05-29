@@ -13140,3 +13140,40 @@ java.sql.SQLIntegrityConstraintViolationException: Cannot add or update a child 
 	at java.base/java.lang.Thread.run(Thread.java:832)
 2021-05-28 17:14:14,500 INFO com.zaxxer.hikari.HikariDataSource [SpringContextShutdownHook] HikariPool-1 - Shutdown initiated...
 2021-05-28 17:14:14,503 INFO com.zaxxer.hikari.HikariDataSource [SpringContextShutdownHook] HikariPool-1 - Shutdown completed.
+2021-05-29 17:59:26,810 INFO com.example.survey.SurveyApplication [restartedMain] Starting SurveyApplication using Java 15.0.2 on jeongHoonMAC.local with PID 1198 (/Users/mac/Desktop/survey/build/classes/java/main started by mac in /Users/mac/Desktop/survey)
+2021-05-29 17:59:26,813 INFO com.example.survey.SurveyApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-05-29 17:59:28,638 INFO org.apache.catalina.core.StandardService [restartedMain] Starting service [Tomcat]
+2021-05-29 17:59:28,638 INFO org.apache.catalina.core.StandardEngine [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.43]
+2021-05-29 17:59:28,721 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [restartedMain] Initializing Spring embedded WebApplicationContext
+2021-05-29 17:59:29,572 INFO com.example.survey.SurveyApplication [restartedMain] Started SurveyApplication in 3.256 seconds (JVM running for 4.286)
+2021-05-29 17:59:34,639 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [http-nio-8888-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-05-29 17:59:43,037 INFO com.zaxxer.hikari.HikariDataSource [http-nio-8888-exec-4] HikariPool-1 - Starting...
+2021-05-29 17:59:43,333 INFO com.zaxxer.hikari.HikariDataSource [http-nio-8888-exec-4] HikariPool-1 - Start completed.
+2021-05-29 18:07:33,478 WARN com.zaxxer.hikari.pool.HikariPool [HikariPool-1 housekeeper] HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=49s995ms).
+2021-05-29 18:43:03,792 WARN com.zaxxer.hikari.pool.HikariPool [HikariPool-1 housekeeper] HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=31m296ms).
+2021-05-29 18:49:48,398 WARN com.zaxxer.hikari.pool.HikariPool [HikariPool-1 housekeeper] HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m14s583ms).
+2021-05-29 19:20:39,222 INFO com.zaxxer.hikari.HikariDataSource [SpringContextShutdownHook] HikariPool-1 - Shutdown initiated...
+2021-05-29 19:20:39,224 INFO com.zaxxer.hikari.HikariDataSource [SpringContextShutdownHook] HikariPool-1 - Shutdown completed.
+2021-05-29 19:20:44,232 INFO com.example.survey.SurveyApplication [restartedMain] Starting SurveyApplication using Java 15.0.2 on jeongHoonMAC.local with PID 1776 (/Users/mac/Desktop/survey/build/classes/java/main started by mac in /Users/mac/Desktop/survey)
+2021-05-29 19:20:44,235 INFO com.example.survey.SurveyApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-05-29 19:20:47,975 INFO org.apache.catalina.core.StandardService [restartedMain] Starting service [Tomcat]
+2021-05-29 19:20:47,976 INFO org.apache.catalina.core.StandardEngine [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.43]
+2021-05-29 19:20:48,217 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [restartedMain] Initializing Spring embedded WebApplicationContext
+2021-05-29 19:20:50,282 INFO com.example.survey.SurveyApplication [restartedMain] Started SurveyApplication in 6.861 seconds (JVM running for 7.832)
+2021-05-29 19:20:50,559 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [http-nio-8888-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-05-29 19:20:50,589 INFO com.zaxxer.hikari.HikariDataSource [http-nio-8888-exec-1] HikariPool-1 - Starting...
+2021-05-29 19:20:50,833 INFO com.zaxxer.hikari.HikariDataSource [http-nio-8888-exec-1] HikariPool-1 - Start completed.
+2021-05-29 19:22:46,949 INFO com.zaxxer.hikari.HikariDataSource [SpringContextShutdownHook] HikariPool-1 - Shutdown initiated...
+2021-05-29 19:22:46,953 INFO com.zaxxer.hikari.HikariDataSource [SpringContextShutdownHook] HikariPool-1 - Shutdown completed.
+2021-05-29 19:22:48,920 INFO com.example.survey.SurveyApplication [restartedMain] Starting SurveyApplication using Java 15.0.2 on jeongHoonMAC.local with PID 1832 (/Users/mac/Desktop/survey/build/classes/java/main started by mac in /Users/mac/Desktop/survey)
+2021-05-29 19:22:48,924 INFO com.example.survey.SurveyApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-05-29 19:22:50,455 INFO org.apache.catalina.core.StandardService [restartedMain] Starting service [Tomcat]
+2021-05-29 19:22:50,455 INFO org.apache.catalina.core.StandardEngine [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.43]
+2021-05-29 19:22:50,505 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [restartedMain] Initializing Spring embedded WebApplicationContext
+2021-05-29 19:22:51,174 INFO com.example.survey.SurveyApplication [restartedMain] Started SurveyApplication in 2.602 seconds (JVM running for 3.179)
+2021-05-29 19:22:56,155 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [http-nio-8888-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-05-29 19:22:56,184 INFO com.zaxxer.hikari.HikariDataSource [http-nio-8888-exec-1] HikariPool-1 - Starting...
+2021-05-29 19:22:56,370 INFO com.zaxxer.hikari.HikariDataSource [http-nio-8888-exec-1] HikariPool-1 - Start completed.
+2021-05-29 19:47:36,215 WARN com.zaxxer.hikari.pool.HikariPool [HikariPool-1 housekeeper] HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=14m39s613ms).
+2021-05-29 20:21:45,598 INFO com.zaxxer.hikari.HikariDataSource [SpringContextShutdownHook] HikariPool-1 - Shutdown initiated...
+2021-05-29 20:21:45,601 INFO com.zaxxer.hikari.HikariDataSource [SpringContextShutdownHook] HikariPool-1 - Shutdown completed.
