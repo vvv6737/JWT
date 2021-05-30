@@ -189,7 +189,10 @@ public class ProductController {
 
     //메인 검색 기능
     @RequestMapping("/searchList")
-    private String searchList(Model model, HttpServletRequest request) throws Exception {
+    private String searchList(Model model, EventVO eventVO, HttpServletRequest request) throws Exception {
+
+        List<EventVO> eventlist = eventService.eventList(eventVO);
+        model.addAttribute("eventlist", eventlist);
 
         model.addAttribute("search", productService.search(request.getParameter("searchName")));
 

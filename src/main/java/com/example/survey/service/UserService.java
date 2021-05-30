@@ -1,6 +1,5 @@
 package com.example.survey.service;
 
-import com.example.survey.VO.User;
 import com.example.survey.mapper.UserMapper;
 import com.example.survey.model.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;

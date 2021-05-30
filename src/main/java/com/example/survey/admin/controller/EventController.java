@@ -1,6 +1,5 @@
 package com.example.survey.admin.controller;
 
-import com.example.survey.VO.User;
 import com.example.survey.admin.model.AdminVO;
 import com.example.survey.admin.model.EventVO;
 import com.example.survey.admin.service.EventService;
