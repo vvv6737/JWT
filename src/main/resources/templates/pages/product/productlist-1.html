@@ -86,8 +86,9 @@
                  data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Product Utilities:</h6>
-                    <a class="collapse-item" href="../productlist">전체상품</a>
-                    <a class="collapse-item" th:each="event:${eventlist}" th:attr="onclick=|moveCategory(${event.seq})|" th:text="${event.Category}" style="cursor:pointer;"></a>
+                    <a class="collapse-item" href="../product/productlist">전체상품</a>
+                    <a class="collapse-item" th:each="event:${eventlist}" th:attr="onclick=|moveCategory(${event.seq})|"
+                       th:text="${event.Category}" style="cursor:pointer;"></a>
                 </div>
             </div>
         </li>
@@ -143,12 +144,13 @@
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                 <!-- Topbar Search -->
-                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
+                      action="/product/searchList" method="get">
                     <div class="input-group">
                         <input type="text" class="form-control bg-light border-0 small" placeholder="원하는 품목을 검색하세요."
-                               aria-label="Search" aria-describedby="basic-addon2">
+                               name="searchName" aria-label="Search" aria-describedby="basic-addon2">
                         <div class="input-group-append">
-                            <button class="btn btn-primary" type="button">
+                            <button class="btn btn-primary" type="submit">
                                 <i class="fas fa-search fa-sm"></i>
                             </button>
                         </div>

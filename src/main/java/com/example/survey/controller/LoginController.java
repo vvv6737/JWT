@@ -34,7 +34,7 @@ public class LoginController {
             UserVO user = loginService.userCheck(userVO);
 
             if (SessionUtils.setUser(user, request)){
-                return "redirect:/surveylist/1";
+                return "redirect:/product/productlist";
             } else {
                 attributes.addFlashAttribute("msg", false);
                 return "redirect:/login";

@@ -21,7 +21,6 @@ public class CartController {
 	private static final Logger logger = LoggerFactory.getLogger(CartController.class);
 	@Autowired
 	CartService cartService;
-	
 
 	//카트 목록 보여주기
 	@RequestMapping(value = "/list", method = { RequestMethod.GET, RequestMethod.POST })
