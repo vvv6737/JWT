@@ -49,3 +49,37 @@
 2021-06-01 02:58:06,509 INFO com.example.survey.controller.CartController [http-nio-8888-exec-6] cartlist : com.example.survey.model.CartVO@5d04c566
 2021-06-01 03:43:05,694 INFO com.zaxxer.hikari.HikariDataSource [SpringContextShutdownHook] HikariPool-1 - Shutdown initiated...
 2021-06-01 03:43:05,698 INFO com.zaxxer.hikari.HikariDataSource [SpringContextShutdownHook] HikariPool-1 - Shutdown completed.
+2021-06-01 13:41:33,970 INFO com.example.survey.SurveyApplication [restartedMain] Starting SurveyApplication using Java 15.0.2 on jeongHoonMAC.local with PID 1251 (/Users/mac/Desktop/Market-JWT-Tokken-Survey/build/classes/java/main started by mac in /Users/mac/Desktop/Market-JWT-Tokken-Survey)
+2021-06-01 13:41:33,972 INFO com.example.survey.SurveyApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-06-01 13:41:35,296 INFO org.apache.catalina.core.StandardService [restartedMain] Starting service [Tomcat]
+2021-06-01 13:41:35,296 INFO org.apache.catalina.core.StandardEngine [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.43]
+2021-06-01 13:41:35,370 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [restartedMain] Initializing Spring embedded WebApplicationContext
+2021-06-01 13:41:36,209 INFO com.example.survey.SurveyApplication [restartedMain] Started SurveyApplication in 2.543 seconds (JVM running for 3.117)
+2021-06-01 13:44:44,453 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [http-nio-8888-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-06-01 13:44:48,131 INFO com.zaxxer.hikari.HikariDataSource [http-nio-8888-exec-4] HikariPool-1 - Starting...
+2021-06-01 13:44:48,434 INFO com.zaxxer.hikari.HikariDataSource [http-nio-8888-exec-4] HikariPool-1 - Start completed.
+2021-06-01 14:02:53,803 INFO com.example.survey.controller.CartController [http-nio-8888-exec-9] cartlist : com.example.survey.model.CartVO@cbe6485
+2021-06-01 14:18:32,599 INFO com.example.survey.controller.CartController [http-nio-8888-exec-2] cartlist : com.example.survey.model.CartVO@7a52ab69
+2021-06-01 14:18:35,767 INFO com.example.survey.controller.CartController [http-nio-8888-exec-9] delete3
+2021-06-01 14:18:35,775 INFO com.example.survey.controller.CartController [http-nio-8888-exec-7] cartlist : com.example.survey.model.CartVO@565b2487
+2021-06-01 14:24:06,254 INFO com.example.survey.controller.CartController [http-nio-8888-exec-3] insertCart()....
+2021-06-01 14:24:06,254 INFO com.example.survey.controller.CartController [http-nio-8888-exec-3] cartDTO : com.example.survey.model.CartVO@510319de
+2021-06-01 14:24:06,255 INFO com.example.survey.controller.CartController [http-nio-8888-exec-3] cartuserid : 123
+2021-06-01 14:24:06,263 INFO com.example.survey.controller.CartController [http-nio-8888-exec-2] cartlist : com.example.survey.model.CartVO@f8a6d56
+2021-06-01 14:24:09,121 INFO com.example.survey.controller.CartController [http-nio-8888-exec-9] insertCart()....
+2021-06-01 14:24:09,121 INFO com.example.survey.controller.CartController [http-nio-8888-exec-9] cartDTO : com.example.survey.model.CartVO@3923d6fb
+2021-06-01 14:24:09,121 INFO com.example.survey.controller.CartController [http-nio-8888-exec-9] cartuserid : 123
+2021-06-01 14:24:09,129 INFO com.example.survey.controller.CartController [http-nio-8888-exec-10] cartlist : com.example.survey.model.CartVO@a3f587a
+2021-06-01 14:24:10,827 INFO com.example.survey.controller.CartController [http-nio-8888-exec-2] delete5
+2021-06-01 14:24:10,834 INFO com.example.survey.controller.CartController [http-nio-8888-exec-7] cartlist : com.example.survey.model.CartVO@4c2e344
+2021-06-01 14:25:44,639 INFO com.example.survey.controller.CartController [http-nio-8888-exec-4] insertCart()....
+2021-06-01 14:25:44,639 INFO com.example.survey.controller.CartController [http-nio-8888-exec-4] cartDTO : com.example.survey.model.CartVO@6293105a
+2021-06-01 14:25:44,639 INFO com.example.survey.controller.CartController [http-nio-8888-exec-4] cartuserid : 123
+2021-06-01 14:25:44,647 INFO com.example.survey.controller.CartController [http-nio-8888-exec-3] cartlist : com.example.survey.model.CartVO@287d9ed1
+2021-06-01 14:44:03,544 INFO com.example.survey.controller.CartController [http-nio-8888-exec-5] cartlist : com.example.survey.model.CartVO@5f95d18a
+2021-06-01 14:44:05,986 INFO com.example.survey.controller.CartController [http-nio-8888-exec-3] delete4
+2021-06-01 14:44:05,994 INFO com.example.survey.controller.CartController [http-nio-8888-exec-6] cartlist : com.example.survey.model.CartVO@116048b1
+2021-06-01 15:13:32,340 WARN com.zaxxer.hikari.pool.HikariPool [HikariPool-1 housekeeper] HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4m41s101ms).
+2021-06-01 15:20:30,658 INFO com.example.survey.controller.BoardController [http-nio-8888-exec-1] board Detail get...
+2021-06-01 15:24:47,996 INFO com.zaxxer.hikari.HikariDataSource [SpringContextShutdownHook] HikariPool-1 - Shutdown initiated...
+2021-06-01 15:24:47,999 INFO com.zaxxer.hikari.HikariDataSource [SpringContextShutdownHook] HikariPool-1 - Shutdown completed.
