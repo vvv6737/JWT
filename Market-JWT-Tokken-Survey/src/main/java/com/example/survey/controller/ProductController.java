@@ -136,6 +136,12 @@ public class ProductController {
         AdminVO admin = SessionUtils.getAdmin(request);
         model.addAttribute("admin", admin);
 
+        model.addAttribute("cartList", cartService.cartListService());
+
+        //카트 목록 갯수
+        int cartCount = cartService.cartCount();
+        model.addAttribute("cartcount", cartCount);
+
         UserVO userVO = SessionUtils.getUser(request);
         model.addAttribute("user", userVO);
 
@@ -170,6 +176,9 @@ public class ProductController {
         List<EventVO> eventlist = eventService.eventList(eventVO);
         model.addAttribute("eventlist", eventlist);
 
+        UserVO userVO = SessionUtils.getUser(request);
+        model.addAttribute("user", userVO);
+
         //카트 목록 갯수
         int cartCount = cartService.cartCount();
         model.addAttribute("cartcount", cartCount);
@@ -190,6 +199,10 @@ public class ProductController {
         List<EventVO> eventlist = eventService.eventList(eventVO);
         model.addAttribute("eventlist", eventlist);
 
+        //카트 목록 갯수
+        int cartCount = cartService.cartCount();
+        model.addAttribute("cartcount", cartCount);
+
         // bno에 해당하는 자료를 찾아와서 model에 담는다.
         model.addAttribute("productdetail", productService.productDetailService(productno)); // 게시글의 정보를 가져와서 저장한다.
 
@@ -204,6 +217,10 @@ public class ProductController {
         model.addAttribute("eventlist", eventlist);
 
         model.addAttribute("search", productService.search(request.getParameter("searchName")));
+
+        //카트 목록 갯수
+        int cartCount = cartService.cartCount();
+        model.addAttribute("cartcount", cartCount);
 
         return "pages/product/searchList";
     }//end - private String searchList( Model model, HttpServletRequest request) throws Exception

@@ -174,7 +174,7 @@
 						   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							<i class="fas fa-shopping-cart"></i>
 							<!-- Counter - Messages -->
-							<span class="badge badge-danger badge-counter">7</span>
+							<span class="badge badge-danger badge-counter" th:if="${user != null}" th:text="${cartcount}"></span>
 						</a>
 						<!-- Dropdown - Messages -->
 						<div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -236,7 +236,6 @@
 			</nav>
 			<!-- End of Topbar -->
 
-			<!-- Pie Chart -->
 			<div class="container-fluid">
 
 				<h1><p class="h3 mb-2 text-gray-800" style="display:inline;">검색 결과</p></h1>

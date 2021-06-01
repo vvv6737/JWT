@@ -50,6 +50,10 @@ public class CartController {
 
 		model.addAttribute("list", cartService.cartListService());
 
+		//카트 목록 갯수
+		int cartCount = cartService.cartCount();
+		model.addAttribute("cartcount", cartCount);
+
 		List<EventVO> eventlist = eventService.eventList(eventVO);
 		model.addAttribute("eventlist", eventlist);
 

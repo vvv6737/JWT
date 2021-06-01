@@ -80,7 +80,7 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="charts.html">
+            <a class="nav-link" href="../../cart/list">
                 <i class="fas fa-shopping-cart"></i>
                 <span>장바구니</span>
             </a>
@@ -149,13 +149,13 @@
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
 
-                    <!-- Nav Item - Messages -->
+                    <!-- Nav Item - cart -->
                     <li class="nav-item dropdown no-arrow mx-1">
                         <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-shopping-cart"></i>
                             <!-- Counter - Messages -->
-                            <span class="badge badge-danger badge-counter" th:if="${user != null}">7</span>
+                            <span class="badge badge-danger badge-counter" th:if="${user != null}" th:text="${cartcount}"></span>
                         </a>
                         <!-- Dropdown - Messages -->
                         <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -257,9 +257,9 @@
                             </tr>
                             </thead>
                             <tr>
-                                <td>
+                                <td style="text-align: center">
                                     <img th:src="@{${'../../upload/' + productdetail.productimageName}}" alt="이미지 업로드"
-                                         style="width: 100%; cursor: pointer;"/>
+                                         style="width: 65%; cursor: pointer;"/>
                                 </td>
                             </tr>
                         </table>
