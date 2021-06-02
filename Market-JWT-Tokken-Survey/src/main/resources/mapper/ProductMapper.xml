@@ -45,16 +45,19 @@
     </select>
 
     <select id="ProductcateList" resultType="com.example.survey.model.ProductVO">
-        SELECT PRODUCTNO,
-               PRODUCTIMAGEFILE,
-               productimageName,
-               productimageOriName,
-               productimageUrl,
-               PRODUCTNAME,
-               PRODUCTPRICE,
-               PRODUCTSALESCNT,
-               PRODUCTCID
-        FROM PRODUCTTABLE
+        SELECT p.PRODUCTNO,
+               p.PRODUCTIMAGEFILE,
+               p.productimageName,
+               p.productimageOriName,
+               p.productimageUrl,
+               p.PRODUCTNAME,
+               p.PRODUCTPRICE,
+               p.PRODUCTSALESCNT,
+               p.PRODUCTCID,
+               e.category
+        FROM PRODUCTTABLE p
+                 Left join event e
+                           on p.PRODUCTCID = e.seq
         WHERE PRODUCTCID = #{productid}
     </select>
 

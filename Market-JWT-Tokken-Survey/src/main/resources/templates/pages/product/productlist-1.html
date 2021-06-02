@@ -166,7 +166,14 @@
                 <ul class="navbar-nav ml-auto">
 
                     <!-- Nav Item - Messages -->
-                    <li class="nav-item dropdown no-arrow mx-1">
+                    <li class="nav-item dropdown no-arrow mx-1" th:if="${user == null}">
+                        <a class="nav-link dropdown-toggle" href="../../cart/list">
+                            <i class="fas fa-shopping-cart"></i>
+                        </a>
+                    </li>
+
+                    <!-- Nav Item - Messages -->
+                    <li class="nav-item dropdown no-arrow mx-1" th:if="${user != null}">
                         <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-shopping-cart"></i>
@@ -179,20 +186,18 @@
                             <h6 class="dropdown-header">
                                 장바구니
                             </h6>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
+                            <a class="dropdown-item d-flex align-items-center" href="/cart/list" th:each="cart:${cartList}">
                                 <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                                         alt="...">
-                                    <div class="status-indicator bg-success"></div>
+                                    <img class="rounded-circle" th:src="@{${'../../upload/' + cart.productimageName}}" alt="이미지 업로드"
+                                         style="width: 100%; cursor: pointer;">
                                 </div>
                                 <div>
-                                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                        told me that people say this to all dogs, even if they aren't good...
+                                    <div class="text-truncate" th:text="${cart.productname}">
                                     </div>
-                                    <div class="small text-gray-500">Chicken the Dog · 2w</div>
+                                    <div class="small text-gray-500" th:text="|${cart.productprice}₩|"></div>
                                 </div>
                             </a>
-                            <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+                            <a class="dropdown-item text-center small text-gray-500" href="/cart/list">장바구니로 바로가기</a>
                         </div>
                     </li>
 
@@ -236,7 +241,9 @@
             <!-- Pie Chart -->
             <div class="container-fluid">
 
-                <!--<h1><p class="h3 mb-2 text-gray-800" th:text="${product.category}" style="display:inline;"></p></h1>-->
+<!--
+                <h1><p class="h3 mb-2 text-gray-800" th:text="${events.category}" style="display:inline;"></p></h1>
+-->
 
                 <div class="row">
 
@@ -295,6 +302,27 @@
 
     </div>
 </div>
+</div>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    Logout notification</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">로그아웃 하시겠습니까?</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-primary" onclick="location.href='/login/logout'">Logout</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- Bootstrap core JavaScript-->

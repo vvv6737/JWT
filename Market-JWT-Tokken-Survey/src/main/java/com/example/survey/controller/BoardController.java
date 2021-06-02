@@ -7,10 +7,7 @@ import com.example.survey.admin.service.EventService;
 import com.example.survey.model.BoardVO;
 import com.example.survey.model.ReplyVO;
 import com.example.survey.model.UserVO;
-import com.example.survey.service.BoardService;
-import com.example.survey.service.LoginService;
-import com.example.survey.service.ReplyService;
-import com.example.survey.service.UserService;
+import com.example.survey.service.*;
 import com.example.survey.utils.SessionUtils;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -55,10 +52,13 @@ public class BoardController {
     @Autowired
     EventService eventService;
 
+    @Autowired
+    CartService cartService;
+
     //게시판 리스트
     //post로 검색처리를 했으나 폼 메소드를 버튼으로바꾸어 검색창에 주소가 뜨게한다.
     @RequestMapping(value = "/surveylist/{seq}", method = {RequestMethod.GET, RequestMethod.POST})
-    public String list(@PathVariable int seq, Model model, HttpServletRequest request) {
+    public String list(@PathVariable int seq, Model model, HttpServletRequest request) throws Exception {
 
         AdminVO admin = SessionUtils.getAdmin(request);
         model.addAttribute("admin", admin);
@@ -80,8 +80,13 @@ public class BoardController {
         model.addAttribute("eventSession", eventVO);
 
         EventVO eventVO2 = SessionUtils.getEventList(request);
-        model.addAttribute("admin", admin);
         model.addAttribute("events", eventVO2);
+
+        //카트 목록 갯수
+        int cartCount = cartService.cartCount();
+        model.addAttribute("cartcount", cartCount);
+
+        model.addAttribute("cartList", cartService.cartListService());
 
         return "pages/survey/list";
     }

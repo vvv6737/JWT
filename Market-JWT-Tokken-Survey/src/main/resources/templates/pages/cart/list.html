@@ -52,6 +52,7 @@
             width: 75%;
             margin: auto;
         }
+
         .table-bordered td, .table-bordered th {
             border: 1px solid #e3e6f0;
             vertical-align: middle !important;
@@ -173,7 +174,14 @@
                 <ul class="navbar-nav ml-auto">
 
                     <!-- Nav Item - Messages -->
-                    <li class="nav-item dropdown no-arrow mx-1">
+                    <li class="nav-item dropdown no-arrow mx-1" th:if="${user == null}">
+                        <a class="nav-link dropdown-toggle" href="../../cart/list">
+                            <i class="fas fa-shopping-cart"></i>
+                        </a>
+                    </li>
+
+                    <!-- Nav Item - Messages -->
+                    <li class="nav-item dropdown no-arrow mx-1" th:if="${user != null}">
                         <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-shopping-cart"></i>
@@ -186,20 +194,18 @@
                             <h6 class="dropdown-header">
                                 장바구니
                             </h6>
-                            <a class="dropdown-item d-flex align-items-center" href="../cart/list">
+                            <a class="dropdown-item d-flex align-items-center" href="/cart/list" th:each="cart:${list}">
                                 <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                                         alt="...">
-                                    <div class="status-indicator bg-success"></div>
+                                    <img class="rounded-circle" th:src="@{${'../../upload/' + cart.productimageName}}" alt="이미지 업로드"
+                                         style="width: 100%; cursor: pointer;">
                                 </div>
                                 <div>
-                                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                        told me that people say this to all dogs, even if they aren't good...
+                                    <div class="text-truncate" th:text="${cart.productname}">
                                     </div>
-                                    <div class="small text-gray-500">Chicken the Dog · 2w</div>
+                                    <div class="small text-gray-500" th:text="|${cart.productprice}₩|"></div>
                                 </div>
                             </a>
-                            <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+                            <a class="dropdown-item text-center small text-gray-500" href="/cart/list">장바구니로 바로가기</a>
                         </div>
                     </li>
 
@@ -240,80 +246,89 @@
             </nav>
             <!-- End of Topbar -->
 
-            <!-- Pie Chart -->
             <div class="container-fluid">
+                <div class="card shadow mb-4">
 
-                <h1><p class="h3 mb-2 text-gray-800" style="display:inline;">장바구니 목록</p></h1>
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">장바구니 목록</h6>
+                    </div>
 
-                <div class="row">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-bordered">
 
-                    <table class="table table-hover table-bordered">
+                                <colgroup>
+                                    <col width="5%">
+                                    <col width="15%">
+                                    <col width="15%">
+                                    <col width="10%">
+                                    <col width="13%">
+                                    <col width="*">
+                                </colgroup>
 
-                        <colgroup>
-                            <col width="5%">
-                            <col width="15%">
-                            <col width="10%">
-                            <col width="10%">
-                            <col width="10%">
-                            <col width="*">
-                        </colgroup>
+                                <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>이미지</th>
+                                    <th>상품명</th>
+                                    <th>가격</th>
+                                    <th>구매 수량</th>
+                                    <th>일자</th>
+                                    <th>구매 결정</th>
+                                </tr>
 
-                        <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>이미지</th>
-                            <th>상품명</th>
-                            <th>가격</th>
-                            <th>구매 수량</th>
-                            <th>일자</th>
-                            <th>구매 결정</th>
-                        </tr>
+                                </thead>
 
-                        </thead>
+                                <tr th:each="cart:${list}" style="cursor:pointer;">
+                                    <td th:text="${cart.cartno}"></td>
+                                    <td><img th:src="@{${'../upload/' + cart.productimageName}}" alt="이미지 업로드"
+                                             style="width: 100%; cursor: pointer;"></td>
+                                    <td th:text="${cart.productname}"></td>
+                                    <td th:text="${cart.productprice}"></td>
+                                    <td><select name="수량~">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select></td>
+                                    <!-- <td>${member.getUserId()}</td> -->
+                                    <td th:text="${#dates.format(cart.cartdate, 'yyyy년 MM월 dd일')}"></td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger"
+                                                th:onclick="'location.href = \'/cart/cartDelete/' + ${cart.cartno} + '\''">
+                                            삭제
+                                        </button>
+                                        <button class="btn btn-warning"
+                                                onclick="location.href='/cart/cartDelete/ + ${cart.cartno}',alert('구매 완료')">
+                                            구매 하기
+                                        </button>
+                                    </td>
+                                </tr>
 
-                        <tr th:each="cart:${list}" style="cursor:pointer;">
-                            <td th:text="${cart.cartno}"></td>
-                            <td><img th:src="@{${'../upload/' + cart.productimageName}}" alt="이미지 업로드"
-                                     style="width: 100%; cursor: pointer;"></td>
-                            <td th:text="${cart.productname}"></td>
-                            <td th:text="${cart.productprice}"></td>
-                            <td><select name="수량~">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select></td>
-                            <!-- <td>${member.getUserId()}</td> -->
-                            <td th:text="${#dates.format(cart.cartdate, 'yyyy년 MM월 dd일')}"></td>
-                            <td>
-                                <button type="button" class="btn btn-danger"
-                                        th:onclick="'location.href = \'/cart/cartDelete/' + ${cart.cartno} + '\''">삭제
-                                </button>
-                                <button class="btn btn-warning"
-                                        onclick="location.href='/cart/cartDelete/${cart.cartno}',alert('구매 완료')">구매 하기
-                                </button>
-                            </td>
-                        </tr>
+                                <!--<c:set var="sum" value="${sum + (cart.productprice * cart.productsalescnt )}"/>
 
-                        <!--<c:set var="sum" value="${sum + (cart.productprice * cart.productsalescnt )}"/>
+                                <tr class="danger">
+                                    <td colspan="7" align="right">
+                                        <b>총 구매금액 :
+                                            <fmt:formatNumber pattern="###,###,###" value="${sum}"/>
+                                            원</b>
 
-                        <tr class="danger">
-                            <td colspan="7" align="right">
-                                <b>총 구매금액 :
-                                    <fmt:formatNumber pattern="###,###,###" value="${sum}"/>
-                                    원</b>
-                            </td>
-                        </tr>-->
+                                            <button class="btn btn-warning"
+                                                onclick="location.href='/cart/cartDelete/ + ${cart.cartno}',alert('구매 완료')">
+                                            모두 구매
+                                        </button>
+                                    </td>
+                                </tr>-->
 
-                        <tbody>
-                        </tbody>
+                                <tbody>
+                                </tbody>
 
-                    </table>
-
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
@@ -335,20 +350,6 @@
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                 <button class="btn btn-primary" onclick="location.href='/login/logout'">Logout</button>
             </div>
-        </div>
-    </div>
-</div>
-
-
-<!-- DataTales Example -->
-<div class="card shadow mb-4">
-
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary"> ㅇㄹ</h6>
-    </div>
-
-    <div class="card-body">
-        <div class="table-responsive">
         </div>
     </div>
 </div>

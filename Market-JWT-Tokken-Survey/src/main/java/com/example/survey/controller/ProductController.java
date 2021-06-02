@@ -183,6 +183,8 @@ public class ProductController {
         int cartCount = cartService.cartCount();
         model.addAttribute("cartcount", cartCount);
 
+        model.addAttribute("cartList", cartService.cartListService());
+
         return "pages/product/productlist-1";
     }//end - private String ProductcateList(@PathVariable int productid, Model model) throws Exception
 
@@ -218,9 +220,15 @@ public class ProductController {
 
         model.addAttribute("search", productService.search(request.getParameter("searchName")));
 
+        UserVO userVO = SessionUtils.getUser(request);
+        model.addAttribute("user", userVO);
+        model.addAttribute("user", userVO);
+
         //카트 목록 갯수
         int cartCount = cartService.cartCount();
         model.addAttribute("cartcount", cartCount);
+
+        model.addAttribute("cartList", cartService.cartListService());
 
         return "pages/product/searchList";
     }//end - private String searchList( Model model, HttpServletRequest request) throws Exception
