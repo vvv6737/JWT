@@ -138,6 +138,12 @@ public class BoardController {
         List<ReplyVO> replyList = replyService.replyList(seq);
         model.addAttribute("replyList", replyList);
 
+        //카트 목록 갯수
+        int cartCount = cartService.cartCount();
+        model.addAttribute("cartcount", cartCount);
+
+        model.addAttribute("cartList", cartService.cartListService());
+
         return "pages/board/boardDetail";
     }
 

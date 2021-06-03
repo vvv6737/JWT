@@ -24,10 +24,6 @@
     <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
     <script>
-        function moveUrl(seq) {
-            window.location.href = '/surveylist/boardDetail/' + seq;
-        }
-
         function moveEvent(seq) {
             window.location.href = '/surveylist/' + seq;
         }
@@ -181,7 +177,8 @@
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-shopping-cart"></i>
                             <!-- Counter - Messages -->
-                            <span class="badge badge-danger badge-counter" th:if="${user != null}" th:text="${cartcount}"></span>
+                            <span class="badge badge-danger badge-counter" th:if="${user != null}"
+                                  th:text="${cartcount}"></span>
                         </a>
                         <!-- Dropdown - Messages -->
                         <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -189,9 +186,11 @@
                             <h6 class="dropdown-header">
                                 장바구니
                             </h6>
-                            <a class="dropdown-item d-flex align-items-center" href="/cart/list" th:each="cart:${cartList}">
+                            <a class="dropdown-item d-flex align-items-center" href="/cart/list"
+                               th:each="cart:${cartList}">
                                 <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" th:src="@{${'../upload/' + cart.productimageName}}" alt="이미지 업로드"
+                                    <img class="rounded-circle" th:src="@{${'../upload/' + cart.productimageName}}"
+                                         alt="이미지 업로드"
                                          style="width: 100%; cursor: pointer;">
                                     <div class="status-indicator bg-success"></div>
                                 </div>
@@ -251,7 +250,8 @@
                     <div class="col-xl-3 col-lg-4" th:each="product:${list}">
                         <div class="card shadow mb-3">
                             <!-- Card Header - Dropdown -->
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
+                                 th:attr="onclick=|moveProduct(${product.productno})|" style="cursor: pointer;">
                                 <h6 class="m-0 font-weight-bold text-primary" th:text="${product.productname}"></h6>
 
                                 <div class="dropdown no-arrow" th:if="${admin != null}">
@@ -262,37 +262,47 @@
                                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                          aria-labelledby="dropdownMenuLink">
                                         <div class="dropdown-header">관련 메뉴:</div>
-                                        <a class="dropdown-item" href="#">삭제</a>
-                                        <a class="dropdown-item" href="#">수정</a>
+
+                                        <a class="dropdown-item"
+                                           th:onclick="'location.href = \'/product/delete/' + ${product.productno} + '\''">삭제</a>
+                                        <a class="dropdown-item"
+                                           th:onclick="'location.href = \'/product/Update/' + ${product.productno} + '\''">수정</a>
+
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="#">장바구니 담기</a>
                                     </div>
                                 </div>
 
                             </div>
+
                             <!-- Card Body -->
                             <div class="card-body">
                                 <div>
                                     <div class="thumbnail">
                                         <img th:src="@{${'../upload/' + product.productimageName}}" alt="이미지 업로드"
-                                             style="width: 100%;margin-bottom: 10px;"/>
+                                             th:attr="onclick=|moveProduct(${product.productno})|"
+                                             style="width: 100%;margin-bottom: 10px;cursor:pointer;"/>
                                         <br>
                                         <ul>
                                             <li th:text="|제품명 : ${product.productname}|"></li>
                                             <li th:text="|가격 : ${product.productprice}₩|"></li>
                                         </ul>
 
-                                        <a th:attr="onclick=|moveProduct(${product.productno})|"
-                                           class="btn btn-secondary btn-icon-split">
-                                        <span class="icon text-white-50">
+                                        <div style="text-align: center;">
+                                            <a th:attr="onclick=|moveProduct(${product.productno})|"
+                                               class="btn btn-secondary btn-icon-split" style="text-align: center;">
+                                        <span class="icon text-white-50" style="padding-top: 9px;">
                                             <i class="fas fa-search"></i>
                                         </span>
-                                            <span class="text">상품 상세보기</span>
-                                        </a>
+                                                <span class="text">상품 상세보기</span>
+                                            </a>
+                                        </div>
 
                                     </div>
+
                                 </div>
                             </div>
+
                         </div>
                     </div>
 

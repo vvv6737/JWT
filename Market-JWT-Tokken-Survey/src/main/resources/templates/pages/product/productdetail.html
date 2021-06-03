@@ -303,6 +303,7 @@
                                 <button class="btn btn-primary" type="submit" value="장바구니담기">장바구니담기</button>
                             </div>
                         </form>
+
                         <div th:if="${user == null}">
                             <select name="수량~">
                                 <option value="1">1</option>
@@ -316,7 +317,7 @@
                             </button>
 
                             <button class="btn btn-danger" th:if="${admin != null}"
-                                    onclick="location.href='/product/delete/${productdetail.productno}'">삭제
+                                    th:onclick="'location.href = \'/product/delete/' + ${productdetail.productno} + '\''">삭제
                             </button>
                         </div>
 

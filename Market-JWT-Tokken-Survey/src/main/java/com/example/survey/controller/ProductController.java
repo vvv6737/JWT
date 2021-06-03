@@ -179,6 +179,9 @@ public class ProductController {
         UserVO userVO = SessionUtils.getUser(request);
         model.addAttribute("user", userVO);
 
+        EventVO eventVO2 = SessionUtils.getEventList(request);
+        model.addAttribute("events", eventVO2);
+
         //카트 목록 갯수
         int cartCount = cartService.cartCount();
         model.addAttribute("cartcount", cartCount);
@@ -238,8 +241,7 @@ public class ProductController {
     private String getUpdate(@PathVariable int productno, Model model) throws Exception {
         model.addAttribute("detail", productService.productDetailService(productno));
         return "pages/product/Update";
-    }// end - public String getUpdate(@PathVariable int bno,Model model) throws
-    // Exception
+    }// end - public String getUpdate(@PathVariable int bno,Model model) throws Exception
 
     // 게시글 수정 화면에서 수정할 자료를 업데이트한다.
     @RequestMapping("/updateProc")
