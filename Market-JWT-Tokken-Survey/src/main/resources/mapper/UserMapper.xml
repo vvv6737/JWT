@@ -68,8 +68,8 @@
     <!-- useGeneratedKeys - 데이터 베이스에서 내부적으로 생성한키 SQL서버와 같은 getGeneratedKeys메소들르 사용하도록 설정하다. -->
     <!-- keyProperty - getGeneratedKeys메소드나 insert구문의 selectKey하위 엘리먼트에 의해 리턴된 키를 셋팅할 프로퍼티를 지정한다. -->
     <insert id="userInsert" parameterType="com.example.survey.model.UserVO" useGeneratedKeys="true" keyProperty="seq">
-        INSERT INTO user (name, email, password, last_update, tel, id, event_seq)
-        VALUES (#{name}, #{email}, #{password}, now(), #{tel}, #{id}, #{eventSeq})
+        INSERT INTO user (name, email, password, last_update, tel, id, event_seq, zipcode, address01, address02)
+        VALUES (#{name}, #{email}, #{password}, now(), #{tel}, #{id}, #{eventSeq}, #{zipcode}, #{address01}, #{address02})
     </insert>
 
     <!-- 수정 -->

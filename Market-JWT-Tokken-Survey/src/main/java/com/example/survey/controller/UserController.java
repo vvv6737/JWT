@@ -94,7 +94,7 @@ public class UserController {
     private String getLogout(HttpSession session) throws Exception{
         log.info("getLogout...");
             session.invalidate();
-        return "redirect:/surveylist/1";
+        return "redirect:/product/productlist";
     }
 
     //수정.

@@ -93,5 +93,8 @@ CREATE TABLE `user` (
   `tel` varchar(45) DEFAULT NULL,
   `id` varchar(45) DEFAULT NULL,
   `event_seq` int DEFAULT NULL,
+  `zipcode` int DEFAULT NULL,
+  `address01` varchar(100) DEFAULT NULL,
+  `address02` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`seq`,`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
