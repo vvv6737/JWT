@@ -65,7 +65,7 @@
         </div>
 
         <!-- Nav Item - Utilities Collapse Menu -->
-        <li class="nav-item active">
+        <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProducts"
                aria-expanded="true" aria-controls="collapseProducts">
                 <i class="fas fa-box"></i>
@@ -99,7 +99,7 @@
         </div>
 
         <!-- Nav Item - Utilities Collapse Menu -->
-        <li class="nav-item">
+        <li class="nav-item active">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSurveys"
                aria-expanded="true" aria-controls="collapseSurveys">
                 <i class="fas fa-fw fa-table"></i>
@@ -153,6 +153,13 @@
 
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
+
+                    <!-- Nav Item - Messages -->
+                    <li class="nav-item dropdown no-arrow mx-1">
+                        <a class="nav-link dropdown-toggle" href="../product/productlist">
+                            <i class="fa fa-home"></i>
+                        </a>
+                    </li>
 
                     <!-- Nav Item - Messages -->
                     <li class="nav-item dropdown no-arrow mx-1" th:if="${user == null}">

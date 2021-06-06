@@ -37,6 +37,17 @@
         }
     </script>
 
+    <script>
+        function Delete(productno) {
+            if (!confirm("정말로 삭제하시겠습니까?")) {
+                return false;
+            } else {
+                alert("삭제되었습니다.");
+                location.href = '/product/delete/' + productno;
+            }
+        }
+    </script>
+
     <style>
         .w3-sidebar a {
             font-family: "Roboto", sans-serif
@@ -98,7 +109,6 @@
                 <span>장바구니</span>
             </a>
         </li>
-
 
         <!-- Divider -->
         <hr class="sidebar-divider">
@@ -163,6 +173,13 @@
 
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
+
+                    <!-- Nav Item - Messages -->
+                    <li class="nav-item dropdown no-arrow mx-1">
+                        <a class="nav-link dropdown-toggle" href="../product/productlist">
+                            <i class="fa fa-home"></i>
+                        </a>
+                    </li>
 
                     <!-- Nav Item - Messages -->
                     <li class="nav-item dropdown no-arrow mx-1" th:if="${user == null}">
@@ -250,8 +267,7 @@
                     <div class="col-xl-3 col-lg-4" th:each="product:${list}">
                         <div class="card shadow mb-3">
                             <!-- Card Header - Dropdown -->
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
-                                 th:attr="onclick=|moveProduct(${product.productno})|" style="cursor: pointer;">
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                 <h6 class="m-0 font-weight-bold text-primary" th:text="${product.productname}"></h6>
 
                                 <div class="dropdown no-arrow" th:if="${admin != null}">
@@ -263,13 +279,13 @@
                                          aria-labelledby="dropdownMenuLink">
                                         <div class="dropdown-header">관련 메뉴:</div>
 
+                                        <a class="dropdown-item" onclick="test()" th:attr="onclick=|Delete(${product.productno})|" style="cursor: pointer;">삭제</a>
+
                                         <a class="dropdown-item"
-                                           th:onclick="'location.href = \'/product/delete/' + ${product.productno} + '\''">삭제</a>
-                                        <a class="dropdown-item"
-                                           th:onclick="'location.href = \'/product/Update/' + ${product.productno} + '\''">수정</a>
+                                           th:onclick="'location.href = \'/product/Update/' + ${product.productno} + '\''" style="cursor: pointer;">수정</a>
 
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">장바구니 담기</a>
+                                        <a class="dropdown-item" onclick="location.href='/login',alert('유저 로그인이 필요합니다.')" style="cursor: pointer;">장바구니 담기</a>
                                     </div>
                                 </div>
 

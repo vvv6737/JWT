@@ -86,7 +86,7 @@ public class ProductController {
             String destinationFileName;
 
             // fileUrl = "uploadFiles 폴더의 위치";
-            String productimageUrl = "/Users/mac/Desktop/survey/src/main/resources/static/upload/";
+            String productimageUrl = "/Users/mac/Desktop/git/Market-JWT-tokken-survey/Market-JWT-Tokken-Survey/src/main/resources/static/upload/";
 
             do {
                 destinationFileName = RandomStringUtils.randomAlphanumeric(32) + "." + fileNameExtension;
@@ -182,6 +182,9 @@ public class ProductController {
         EventVO eventVO2 = SessionUtils.getEventList(request);
         model.addAttribute("events", eventVO2);
 
+        AdminVO admin = SessionUtils.getAdmin(request);
+        model.addAttribute("admin", admin);
+
         //카트 목록 갯수
         int cartCount = cartService.cartCount();
         model.addAttribute("cartcount", cartCount);
@@ -208,6 +211,8 @@ public class ProductController {
         int cartCount = cartService.cartCount();
         model.addAttribute("cartcount", cartCount);
 
+        model.addAttribute("cartList", cartService.cartListService());
+
         // bno에 해당하는 자료를 찾아와서 model에 담는다.
         model.addAttribute("productdetail", productService.productDetailService(productno)); // 게시글의 정보를 가져와서 저장한다.
 
@@ -226,6 +231,9 @@ public class ProductController {
         UserVO userVO = SessionUtils.getUser(request);
         model.addAttribute("user", userVO);
         model.addAttribute("user", userVO);
+
+        AdminVO admin = SessionUtils.getAdmin(request);
+        model.addAttribute("admin", admin);
 
         //카트 목록 갯수
         int cartCount = cartService.cartCount();

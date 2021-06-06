@@ -166,6 +166,13 @@
                 <ul class="navbar-nav ml-auto">
 
                     <!-- Nav Item - Messages -->
+                    <li class="nav-item dropdown no-arrow mx-1">
+                        <a class="nav-link dropdown-toggle" href="../product/productlist">
+                            <i class="fa fa-home"></i>
+                        </a>
+                    </li>
+
+                    <!-- Nav Item - Messages -->
                     <li class="nav-item dropdown no-arrow mx-1" th:if="${user == null}">
                         <a class="nav-link dropdown-toggle" href="../../cart/list">
                             <i class="fas fa-shopping-cart"></i>
@@ -260,11 +267,13 @@
                                          aria-labelledby="dropdownMenuLink">
                                         <div class="dropdown-header">관련 메뉴:</div>
 
-                                        <a class="dropdown-item" th:onclick="'location.href = \'/product/delete/' + ${product.productno} + '\''">삭제</a>
-                                        <a class="dropdown-item" th:onclick="'location.href = \'/product/Update/' + ${product.productno} + '\''">수정</a>
-                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item"
+                                           th:onclick="'location.href = \'/product/delete/' + ${product.productno} + '\''" style="cursor: pointer;">삭제</a>
+                                        <a class="dropdown-item"
+                                           th:onclick="'location.href = \'/product/Update/' + ${product.productno} + '\''" style="cursor: pointer;">수정</a>
 
-                                        <a class="dropdown-item" href="#">Something else here</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" onclick="location.href='/login',alert('유저 로그인이 필요합니다.')" style="cursor: pointer;">장바구니 담기</a>
                                     </div>
                                 </div>
 
