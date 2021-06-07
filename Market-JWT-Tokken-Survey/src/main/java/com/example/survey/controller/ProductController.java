@@ -97,8 +97,6 @@ public class ProductController {
             destinationFile.getParentFile().mkdirs();
             productimagefile.transferTo(destinationFile);
 
-            //productService.productInsertService(product); // 게시글 올리기
-
             // 파일관련 자료를 product테이블에 등록한다.
             product.setProductno(product.getProductno());
             product.setProductimagefile(Productimagefile);
