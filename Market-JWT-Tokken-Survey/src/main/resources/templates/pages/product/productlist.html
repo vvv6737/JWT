@@ -35,6 +35,10 @@
         function moveProduct(productno) {
             window.location.href = '/product/productdetail/' + productno;
         }
+
+        function cartlogin() {
+            window.alert("로그인 후 이용 가능한 서비스입니다.");
+        }
     </script>
 
     <script>
@@ -183,7 +187,7 @@
 
                     <!-- Nav Item - Messages -->
                     <li class="nav-item dropdown no-arrow mx-1" th:if="${user == null}">
-                        <a class="nav-link dropdown-toggle" href="../cart/list">
+                        <a class="nav-link dropdown-toggle" onclick="cartlogin();" href="../cart/list">
                             <i class="fas fa-shopping-cart"></i>
                         </a>
                     </li>
@@ -268,7 +272,7 @@
                         <div class="card shadow mb-3">
                             <!-- Card Header - Dropdown -->
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary" th:text="${product.productname}"></h6>
+                                <h6 class="m-0 font-weight-bold text-primary" th:text="${product.productname}" th:attr="onclick=|moveProduct(${product.productno})|" style="cursor: pointer;"></h6>
 
                                 <div class="dropdown no-arrow" th:if="${admin != null}">
                                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"

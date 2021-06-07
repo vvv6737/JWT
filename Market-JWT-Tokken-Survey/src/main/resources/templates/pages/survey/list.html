@@ -36,6 +36,9 @@
         function moveProduct(productno) {
             window.location.href = '/product/productdetail/' + productno;
         }
+        function cartlogin() {
+            window.alert("로그인 후 이용 가능한 서비스입니다.");
+        }
     </script>
 
 </head>
@@ -163,7 +166,7 @@
 
                     <!-- Nav Item - Messages -->
                     <li class="nav-item dropdown no-arrow mx-1" th:if="${user == null}">
-                        <a class="nav-link dropdown-toggle" href="../cart/list">
+                        <a class="nav-link dropdown-toggle" onclick="cartlogin();" href="../cart/list">
                             <i class="fas fa-shopping-cart"></i>
                         </a>
                     </li>
