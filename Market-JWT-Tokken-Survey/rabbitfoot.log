@@ -1,11 +1,6 @@
-2021-06-08 17:54:31,335 INFO com.example.survey.SurveyApplication [restartedMain] Starting SurveyApplication using Java 15.0.2 on jeongHoonMAC.local with PID 1756 (/Users/mac/Desktop/git/Market-JWT-tokken-survey/Market-JWT-Tokken-Survey/build/classes/java/main started by mac in /Users/mac/Desktop/git/Market-JWT-tokken-survey/Market-JWT-Tokken-Survey)
-2021-06-08 17:54:31,339 INFO com.example.survey.SurveyApplication [restartedMain] No active profile set, falling back to default profiles: default
-2021-06-08 17:54:32,719 INFO org.apache.catalina.core.StandardService [restartedMain] Starting service [Tomcat]
-2021-06-08 17:54:32,719 INFO org.apache.catalina.core.StandardEngine [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.43]
-2021-06-08 17:54:32,781 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [restartedMain] Initializing Spring embedded WebApplicationContext
-2021-06-08 17:54:33,694 INFO com.example.survey.SurveyApplication [restartedMain] Started SurveyApplication in 2.665 seconds (JVM running for 3.537)
-2021-06-08 17:55:01,493 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [http-nio-8888-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2021-06-08 17:55:04,080 INFO com.zaxxer.hikari.HikariDataSource [http-nio-8888-exec-4] HikariPool-1 - Starting...
-2021-06-08 17:55:04,386 INFO com.zaxxer.hikari.HikariDataSource [http-nio-8888-exec-4] HikariPool-1 - Start completed.
-2021-06-08 18:03:00,347 INFO com.zaxxer.hikari.HikariDataSource [SpringContextShutdownHook] HikariPool-1 - Shutdown initiated...
-2021-06-08 18:03:00,353 INFO com.zaxxer.hikari.HikariDataSource [SpringContextShutdownHook] HikariPool-1 - Shutdown completed.
+2021-06-17 00:03:42,495 INFO com.example.survey.SurveyApplication [restartedMain] Starting SurveyApplication using Java 15.0.2 on jeongHoonMAC.local with PID 1919 (/Users/mac/Desktop/git/Market-JWT-tokken-survey/Market-JWT-Tokken-Survey/build/classes/java/main started by mac in /Users/mac/Desktop/git/Market-JWT-tokken-survey/Market-JWT-Tokken-Survey)
+2021-06-17 00:03:42,500 INFO com.example.survey.SurveyApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-06-17 00:03:43,821 INFO org.apache.catalina.core.StandardService [restartedMain] Starting service [Tomcat]
+2021-06-17 00:03:43,821 INFO org.apache.catalina.core.StandardEngine [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.43]
+2021-06-17 00:03:43,890 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [restartedMain] Initializing Spring embedded WebApplicationContext
+2021-06-17 00:03:44,723 INFO com.example.survey.SurveyApplication [restartedMain] Started SurveyApplication in 2.533 seconds (JVM running for 3.188)
