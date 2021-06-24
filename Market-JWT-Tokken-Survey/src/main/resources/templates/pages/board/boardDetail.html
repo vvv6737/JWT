@@ -398,16 +398,16 @@
                         <div>
                             <label for="content"><strong>답글</strong></label>
                             <form method="post" action="/list/replyInsert"/>
-                            <div class="input-group ">
-                                <input type="hidden" name="seq" th:value="${boardDetail.seq}"/>
-                                <input th:if="${admin != null}" type="hidden" name="name"
-                                       th:value="${admin.managerName}"/>
-                                <input th:if="${admin != null}" type="text" class="form-control" name="recontent"
-                                       placeholder="댓글을 입력하세요.">
-                                <span class="input-group-btn">
-                                    <button th:if="${admin != null}" class="btn btn-reply" type="submit">등록</button>
-                                </span>
-                            </div>
+                                <div class="input-group ">
+                                    <input type="hidden" name="seq" th:value="${boardDetail.seq}"/>
+                                    <input th:if="${admin != null}" type="hidden" name="name"
+                                           th:value="${admin.managerName}"/>
+                                    <input th:if="${admin != null}" type="text" class="form-control" name="recontent"
+                                           placeholder="댓글을 입력하세요.">
+                                    <span class="input-group-btn">
+                                        <button th:if="${admin != null}" class="btn btn-reply" type="submit">등록</button>
+                                    </span>
+                                </div>
                             </form>
                         </div>
 
@@ -511,5 +511,94 @@
 <script src="/js/demo/datatables-demo.js"></script>
 
 </body>
+<!--<script>-->
+<!--    //alert("script start...");-->
+<!--    var imsi = "Good";-->
+<!--    var boardno= '${detail.boardno}';	//게시글 번호-->
+<!--    //alert("bno : " + bno);-->
+<!--    //댓글 등록 버튼을 눌렀을 경우-->
+<!--    $('[name=commentInsertBtn]').click(function() {-->
+<!--        //alert("commentInsertBtn.....");-->
+<!--        //alert("commentList....");-->
 
+<!--        //로그인을 하지않고 댓글 등록버튼을 눌렀을 때 alert창이 뜸.-->
+<!--        if(${member == null}){-->
+<!--            alert("로그인을 하셔야 합니다.");-->
+<!--        }-->
+<!--        var insertData = $('[name=commentInsertForm]').serialize();	//commentInsertForm의 내용을 가져온다.-->
+
+<!--        commentInsert(insertData);-->
+<!--        //commentInsert(boardno);-->
+<!--        //commentList(listData);-->
+<!--    });-->
+<!--    //댓글등록-->
+<!--    function commentInsert(insertData){-->
+<!--        //alert(insertData)-->
+<!--        $.ajax({-->
+<!--            url : '/list/replyInsert',-->
+<!--            type : 'post',-->
+<!--            data : insertData,-->
+<!--            success : function(data){-->
+<!--                if(data == 1) {-->
+<!--                    commentList(); //댓글 작성 후 댓글 목록 reload-->
+<!--                    $('[name=replytext]').val('');-->
+<!--                } else{-->
+<!--                    commentList(); // 댓글 목록 reload-->
+<!--                }-->
+<!--            }-->
+<!--        });-->
+<!--    }-->
+<!--    //초기 페이지 로딩시 댓글 불러오기-->
+<!--    $(function(){-->
+<!--        commentList();-->
+<!--    });-->
+<!--    //댓글 수정 - 댓글 내용 출력을 input 폼으로 변경한다.-->
+<!--    function commentUpdate(replyno, replytext){-->
+<!--        var str = '';-->
+
+<!--        str +='<c:if test="${member != null}">';-->
+<!--        alert('로그인한 회원입니다.');-->
+
+<!--        str += '<div class="input-group">';-->
+<!--        //str += '<input type="text" class="form-control" name="replytext_' +replytext +'" value="' +replytext + '"/>';-->
+<!--        str += '<input type="text" class="form-control" name="replytext_' +replyno +'" value="' +replytext + '"/>';-->
+<!--        str += '<span class="input-group-btn"><button class="btn btn-warning" type="button" onclick="mCommentServiceUpdate('+replyno+')";>수정</button></span>';-->
+<!--        str += '</div>';-->
+<!--        str += '</c:if>';-->
+
+<!--        str += '<c:if test="${member == null}">';-->
+<!--        alert('수정할 권한이 없습니다.');-->
+
+<!--        str += '<input type="text" class="form-control" name="replytext_' +replyno +'" value="' +replytext + '"/>';-->
+<!--        str += '</c:if>';-->
+<!--        $('.commentContent' + replyno).html(str);-->
+<!--    }-->
+<!--    //댓글 수정 - 수정한 댓글 내용을 테이블에 업데이트 한다.-->
+<!--    function mCommentServiceUpdate(replyno){-->
+<!--        //댓글 번호에 해당하는 수정된 내용을 가져온다.-->
+<!--        var updateContent = $('[name=replytext_'+replyno+']').val();-->
+<!--        $.ajax({-->
+<!--            url : '/comment/update',-->
+<!--            type : 'get',-->
+<!--            data : {'replyno' : replyno, 'replytext' :  updateContent},-->
+<!--            success : function(data){-->
+<!--                if(data == 1) commentList();-->
+<!--            }-->
+<!--        });-->
+<!--    }-->
+<!--    //댓글 삭제-->
+<!--    function commentDelete(reseq){-->
+<!--        $.ajax({-->
+<!--            url : '/list/replyDelete/' + reseq,-->
+<!--            type : 'post',-->
+<!--            success : function(data){-->
+<!--                if(data == 1) commentList();-->
+<!--            }-->
+<!--        });-->
+<!--    }-->
+<!--    //페이지 로딩시 게시글에 연결된 댓글이 있으면 무조건 댓글을 보여준다.-->
+<!--    $(document).ready(function(){-->
+<!--        commentList();-->
+<!--    });-->
+<!--</script>-->
 </html>
