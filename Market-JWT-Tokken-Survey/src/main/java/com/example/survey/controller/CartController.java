@@ -97,9 +97,6 @@ public class CartController {
 		cartService.cartDeleteService(cartno);
 		return "redirect:/cart/list";
 	}//end - private String cartDelete(@PathVariable int cartno, Model model) throws Exception
-	
-	
-	
 }
 
 

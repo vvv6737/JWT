@@ -11,56 +11,49 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <div class="container">
-    <div class="container-fluid">
-        <h2 align="left">상품 업데이트</h2>
+    <h2 align="left">상품 업데이트</h2>
 
-        <form class="form-horizontal" action="/product/updateProc" method="post">
+    <form class="form-horizontal" action="/product/updateProc" method="post">
 
-            <div class="inputArea">
-                <label for="productimagefile">이미지</label>
+        <div class="inputArea">
+            <label for="productimagefile">이미지</label>
 
-                <input type="file" id="productimagefile" name="productimagefile">
+            <input type="file" id="productimagefile" name="productimagefile">
 
-                <div class="select_img"><img src=""/></div>
+            <div class="select_img"><img th:src="@{${'../../upload/' + detail.productimageName}}"/></div>
 
-                <!--이미지 미리보기-->
-                <script>
-                    $("#productimagefile").change(function () {
-                        if (this.files && this.files[0]) {
-                            var reader = new FileReader;
-                            reader.onload = function (data) {
-                                $(".select_img img").attr("src", data.target.result).width(500);
-                            }
-                            reader.readAsDataURL(this.files[0]);
+            <!--이미지 미리보기-->
+            <script>
+                $("#productimagefile").change(function () {
+                    if (this.files && this.files[0]) {
+                        var reader = new FileReader;
+                        reader.onload = function (data) {
+                            $(".select_img img").attr("src", data.target.result).width(500);
                         }
-                    });
-                </script>
-            </div>
+                        reader.readAsDataURL(this.files[0]);
+                    }
+                });
+            </script>
+        </div>
 
-            <br>
+        <br>
 
-            <div class="form-group">
-                <label for="productname">제 품 명</label>
-                <input type="text" class="form-control" id="productname" name="productname" placeholder="제품명을 입력하십시오."/>
-            </div>
+        <label for="productname">제 품 명</label>
+        <input type="text" class="form-control" id="productname" name="productname" th:value="${detail.productname}" placeholder="제품명을 입력하십시오."/>
 
-            <div class="form-group">
-                <label for="productprice">가 격</label>
-                <input type="number" class="form-control" id="productprice" name="productprice"
-                       placeholder="가격를 입력하십시오."/>
-            </div>
+        <label for="productprice">가 격</label>
+        <input type="number" class="form-control" id="productprice" name="productprice" th:value="${detail.productprice}"
+               placeholder="가격를 입력하십시오."/>
 
-            <div class="form-group">
-                <label for="productsalescnt">판매수량</label>
-                <input type="number" class="form-control" id="productsalescnt" name="productsalescnt"
-                       placeholder="수량를 입력하십시오."/>
-            </div>
+        <label for="productsalescnt">판매수량</label>
+        <input type="number" class="form-control" id="productsalescnt" name="productsalescnt" th:value="${detail.productsalescnt}"
+               placeholder="수량를 입력하십시오."/>
 
-            <input type="hidden" name="productno" value="${productno}"/>
-            <button type="submit" class="btn btn-primary">수 정</button>
+        <input type="hidden" name="productno" value="${productno}"/>
+        <br>
+        <button type="submit" class="btn btn-primary">수 정</button>
 
-        </form>
-    </div>
+    </form>
 </div>
 </body>
 </html>
