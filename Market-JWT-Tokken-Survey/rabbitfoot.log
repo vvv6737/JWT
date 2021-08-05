@@ -818,3 +818,149 @@ org.thymeleaf.exceptions.TemplateInputException: Error resolving template [pages
 2021-07-25 20:15:20,277 WARN com.zaxxer.hikari.pool.HikariPool [HikariPool-1 housekeeper] HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=50s532ms).
 2021-07-25 20:35:02,036 INFO com.zaxxer.hikari.HikariDataSource [SpringContextShutdownHook] HikariPool-1 - Shutdown initiated...
 2021-07-25 20:35:02,040 INFO com.zaxxer.hikari.HikariDataSource [SpringContextShutdownHook] HikariPool-1 - Shutdown completed.
+2021-07-25 21:45:23,350 INFO com.example.survey.SurveyApplication [restartedMain] Starting SurveyApplication using Java 15.0.2 on jeongHoonMAC.local with PID 4185 (/Users/mac/Desktop/git/Market-JWT-tokken-survey/Market-JWT-Tokken-Survey/build/classes/java/main started by mac in /Users/mac/Desktop/git/Market-JWT-tokken-survey/Market-JWT-Tokken-Survey)
+2021-07-25 21:45:23,352 INFO com.example.survey.SurveyApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-07-25 21:45:24,910 INFO org.apache.catalina.core.StandardService [restartedMain] Starting service [Tomcat]
+2021-07-25 21:45:24,911 INFO org.apache.catalina.core.StandardEngine [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.43]
+2021-07-25 21:45:24,975 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [restartedMain] Initializing Spring embedded WebApplicationContext
+2021-07-25 21:45:26,005 INFO com.example.survey.SurveyApplication [restartedMain] Started SurveyApplication in 2.962 seconds (JVM running for 3.495)
+2021-07-25 21:45:39,886 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [http-nio-8888-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-07-25 21:45:42,614 INFO com.zaxxer.hikari.HikariDataSource [http-nio-8888-exec-3] HikariPool-1 - Starting...
+2021-07-25 21:45:42,850 INFO com.zaxxer.hikari.HikariDataSource [http-nio-8888-exec-3] HikariPool-1 - Start completed.
+2021-07-25 21:46:25,560 ERROR org.thymeleaf.TemplateEngine [http-nio-8888-exec-7] [THYMELEAF][http-nio-8888-exec-7] Exception processing template "pages/product/productlist": Error resolving template [pages/product/productlist], template might not exist or might not be accessible by any of the configured Template Resolvers
+org.thymeleaf.exceptions.TemplateInputException: Error resolving template [pages/product/productlist], template might not exist or might not be accessible by any of the configured Template Resolvers
+	at org.thymeleaf.engine.TemplateManager.resolveTemplate(TemplateManager.java:869)
+	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:607)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1098)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1072)
+	at org.thymeleaf.spring5.view.ThymeleafView.renderFragment(ThymeleafView.java:366)
+	at org.thymeleaf.spring5.view.ThymeleafView.render(ThymeleafView.java:190)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1393)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1138)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1077)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:962)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:626)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:143)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:346)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:374)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:887)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1684)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+2021-07-25 21:46:25,562 ERROR org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].[dispatcherServlet] [http-nio-8888-exec-7] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.thymeleaf.exceptions.TemplateInputException: Error resolving template [pages/product/productlist], template might not exist or might not be accessible by any of the configured Template Resolvers] with root cause
+org.thymeleaf.exceptions.TemplateInputException: Error resolving template [pages/product/productlist], template might not exist or might not be accessible by any of the configured Template Resolvers
+	at org.thymeleaf.engine.TemplateManager.resolveTemplate(TemplateManager.java:869)
+	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:607)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1098)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1072)
+	at org.thymeleaf.spring5.view.ThymeleafView.renderFragment(ThymeleafView.java:366)
+	at org.thymeleaf.spring5.view.ThymeleafView.render(ThymeleafView.java:190)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1393)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1138)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1077)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:962)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:626)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:143)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:346)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:374)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:887)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1684)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+2021-07-25 21:47:03,734 INFO com.example.survey.controller.CartController [http-nio-8888-exec-5] cartlist : com.example.survey.model.CartVO@34ed3357
+2021-07-25 21:47:11,661 INFO com.example.survey.controller.BoardController [http-nio-8888-exec-9] board Detail get...
+2021-07-25 21:48:20,832 INFO com.zaxxer.hikari.HikariDataSource [SpringContextShutdownHook] HikariPool-1 - Shutdown initiated...
+2021-07-25 21:48:20,837 INFO com.zaxxer.hikari.HikariDataSource [SpringContextShutdownHook] HikariPool-1 - Shutdown completed.
+2021-07-25 21:48:24,143 INFO com.example.survey.SurveyApplication [restartedMain] Starting SurveyApplication using Java 15.0.2 on jeongHoonMAC.local with PID 4447 (/Users/mac/Desktop/git/Market-JWT-tokken-survey/Market-JWT-Tokken-Survey/build/classes/java/main started by mac in /Users/mac/Desktop/git/Market-JWT-tokken-survey/Market-JWT-Tokken-Survey)
+2021-07-25 21:48:24,145 INFO com.example.survey.SurveyApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-07-25 21:48:25,211 INFO org.apache.catalina.core.StandardService [restartedMain] Starting service [Tomcat]
+2021-07-25 21:48:25,212 INFO org.apache.catalina.core.StandardEngine [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.43]
+2021-07-25 21:48:25,261 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [restartedMain] Initializing Spring embedded WebApplicationContext
+2021-07-25 21:48:25,934 INFO com.example.survey.SurveyApplication [restartedMain] Started SurveyApplication in 2.057 seconds (JVM running for 2.865)
+2021-07-25 21:48:28,113 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [http-nio-8888-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-07-25 21:48:28,138 INFO com.zaxxer.hikari.HikariDataSource [http-nio-8888-exec-1] HikariPool-1 - Starting...
+2021-07-25 21:48:28,317 INFO com.zaxxer.hikari.HikariDataSource [http-nio-8888-exec-1] HikariPool-1 - Start completed.
+2021-07-25 21:48:42,892 INFO com.zaxxer.hikari.HikariDataSource [SpringContextShutdownHook] HikariPool-1 - Shutdown initiated...
+2021-07-25 21:48:42,897 INFO com.zaxxer.hikari.HikariDataSource [SpringContextShutdownHook] HikariPool-1 - Shutdown completed.
+2021-07-25 21:48:45,437 INFO com.example.survey.SurveyApplication [restartedMain] Starting SurveyApplication using Java 15.0.2 on jeongHoonMAC.local with PID 4453 (/Users/mac/Desktop/git/Market-JWT-tokken-survey/Market-JWT-Tokken-Survey/build/classes/java/main started by mac in /Users/mac/Desktop/git/Market-JWT-tokken-survey/Market-JWT-Tokken-Survey)
+2021-07-25 21:48:45,439 INFO com.example.survey.SurveyApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-07-25 21:48:46,397 INFO org.apache.catalina.core.StandardService [restartedMain] Starting service [Tomcat]
+2021-07-25 21:48:46,397 INFO org.apache.catalina.core.StandardEngine [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.43]
+2021-07-25 21:48:46,444 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [restartedMain] Initializing Spring embedded WebApplicationContext
+2021-07-25 21:48:47,116 INFO com.example.survey.SurveyApplication [restartedMain] Started SurveyApplication in 1.907 seconds (JVM running for 2.379)
+2021-07-25 21:48:49,917 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [http-nio-8888-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-07-25 21:48:49,950 INFO com.zaxxer.hikari.HikariDataSource [http-nio-8888-exec-1] HikariPool-1 - Starting...
+2021-07-25 21:48:50,237 INFO com.zaxxer.hikari.HikariDataSource [http-nio-8888-exec-1] HikariPool-1 - Start completed.
+2021-07-25 21:49:21,960 INFO com.zaxxer.hikari.HikariDataSource [SpringContextShutdownHook] HikariPool-1 - Shutdown initiated...
+2021-07-25 21:49:21,964 INFO com.zaxxer.hikari.HikariDataSource [SpringContextShutdownHook] HikariPool-1 - Shutdown completed.
+2021-07-25 21:49:24,421 INFO com.example.survey.SurveyApplication [restartedMain] Starting SurveyApplication using Java 15.0.2 on jeongHoonMAC.local with PID 4461 (/Users/mac/Desktop/git/Market-JWT-tokken-survey/Market-JWT-Tokken-Survey/build/classes/java/main started by mac in /Users/mac/Desktop/git/Market-JWT-tokken-survey/Market-JWT-Tokken-Survey)
+2021-07-25 21:49:24,423 INFO com.example.survey.SurveyApplication [restartedMain] No active profile set, falling back to default profiles: default
+2021-07-25 21:49:25,351 INFO org.apache.catalina.core.StandardService [restartedMain] Starting service [Tomcat]
+2021-07-25 21:49:25,351 INFO org.apache.catalina.core.StandardEngine [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.43]
+2021-07-25 21:49:25,398 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [restartedMain] Initializing Spring embedded WebApplicationContext
+2021-07-25 21:49:26,122 INFO com.example.survey.SurveyApplication [restartedMain] Started SurveyApplication in 1.927 seconds (JVM running for 2.374)
+2021-07-25 21:49:28,328 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [http-nio-8888-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-07-25 21:49:28,357 INFO com.zaxxer.hikari.HikariDataSource [http-nio-8888-exec-1] HikariPool-1 - Starting...
+2021-07-25 21:49:28,544 INFO com.zaxxer.hikari.HikariDataSource [http-nio-8888-exec-1] HikariPool-1 - Start completed.
+2021-07-25 21:50:10,496 INFO com.zaxxer.hikari.HikariDataSource [SpringContextShutdownHook] HikariPool-1 - Shutdown initiated...
+2021-07-25 21:50:10,503 INFO com.zaxxer.hikari.HikariDataSource [SpringContextShutdownHook] HikariPool-1 - Shutdown completed.
