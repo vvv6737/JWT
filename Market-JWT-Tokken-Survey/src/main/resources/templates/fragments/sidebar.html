@@ -1,10 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org">
 
-</body>
+<th:block th:fragment="sidebarFragment">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/product/productlist">
+            <div class="sidebar-brand-icon rotate-n-0">
+                <i class="fas fa-address-card"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3">Products Lists</div>
+        </a>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Products Lists
+        </div>
+
+        <!-- Nav Item - Utilities Collapse Menu -->
+        <li class="nav-item active">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProducts"
+               aria-expanded="true" aria-controls="collapseProducts">
+                <i class="fas fa-box"></i>
+                <span>상품목록</span>
+            </a>
+            <div id="collapseProducts" class="collapse" aria-labelledby="headingUtilities"
+                 data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Product Utilities:</h6>
+                    <a class="collapse-item" href="../product/productlist">전체상품</a>
+                    <a class="collapse-item" th:each="event:${eventlist}" th:attr="onclick=|moveCategory(${event.seq})|"
+                       th:text="${event.Category}" style="cursor:pointer;"></a>
+                </div>
+            </div>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="/cart/list">
+                <i class="fas fa-shopping-cart"></i>
+                <span>장바구니</span>
+            </a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Survey Lists
+        </div>
+
+        <!-- Nav Item - Utilities Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSurveys"
+               aria-expanded="true" aria-controls="collapseSurveys">
+                <i class="fas fa-fw fa-table"></i>
+                <span>설문 이벤트 목록</span>
+            </a>
+            <div id="collapseSurveys" class="collapse" aria-labelledby="headingUtilities"
+                 data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">survey Utilities:</h6>
+                    <a class="collapse-item" th:each="event:${eventlist}" th:attr="onclick=|moveEvent(${event.seq})|"
+                       th:text="${event.eventName}" style="cursor:pointer;"></a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+
+    </ul>
+    <!-- End of Sidebar -->
+
+</th:block>
+
 </html>

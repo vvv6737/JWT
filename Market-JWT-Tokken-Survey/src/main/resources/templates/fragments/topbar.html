@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<th:block th:fragment="topbarFragment">
+
+    <!-- Topbar -->
+    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+        <!-- Topbar Search -->
+        <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
+              action="/product/searchList" method="get">
+            <div class="input-group">
+                <input type="text" class="form-control bg-light border-0 small" placeholder="원하는 품목을 검색하세요."
+                       name="searchName" aria-label="Search" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-search fa-sm"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Sidebar Toggle (Topbar) -->
+        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+        </button>
+
+        <!-- Topbar Navbar -->
+        <ul class="navbar-nav ml-auto">
+
+            <!-- Nav Item - Messages -->
+            <li class="nav-item dropdown no-arrow mx-1">
+                <a class="nav-link dropdown-toggle" href="../product/productlist">
+                    <i class="fa fa-home"></i>
+                </a>
+            </li>
+
+            <!-- Nav Item - Messages -->
+            <li class="nav-item dropdown no-arrow mx-1" th:if="${user == null}">
+                <a class="nav-link dropdown-toggle" onclick="cartlogin();" href="../cart/list">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+            </li>
+
+            <!-- Nav Item - Messages -->
+            <li class="nav-item dropdown no-arrow mx-1" th:if="${user != null}">
+                <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-shopping-cart"></i>
+                    <!-- Counter - Messages -->
+                    <span class="badge badge-danger badge-counter" th:if="${user != null}"
+                          th:text="${cartcount}"></span>
+                </a>
+                <!-- Dropdown - Messages -->
+                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                     aria-labelledby="messagesDropdown">
+                    <h6 class="dropdown-header">
+                        장바구니
+                    </h6>
+                    <a class="dropdown-item d-flex align-items-center" href="/cart/list"
+                       th:each="cart:${cartList}">
+                        <div class="dropdown-list-image mr-3">
+                            <img class="rounded-circle" th:src="@{${'../upload/' + cart.productimageName}}"
+                                 alt="이미지 업로드"
+                                 style="width: 100%; cursor: pointer;">
+                            <div class="status-indicator bg-success"></div>
+                        </div>
+                        <div>
+                            <div class="text-truncate" th:text="${cart.productname}">
+                            </div>
+                            <div class="small text-gray-500" th:text="|${cart.productprice}₩|"></div>
+                        </div>
+                    </a>
+                    <a class="dropdown-item text-center small text-gray-500" href="/cart/list">장바구니로 바로가기</a>
+                </div>
+            </li>
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+
+            <!-- Nav Item - User Information -->
+            <li th:if="${user != null}" class="nav-item dropdown no-arrow">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                <p class="user" th:text="${user.name}" style="display:inline"></p>
+                            </span>
+                    <img class="img-profile rounded-circle"
+                         src="/img/undraw_profile.svg">
+                </a>
+                <!-- Dropdown - User Information -->
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                     aria-labelledby="userDropdown">
+
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Logout
+                    </a>
+
+                </div>
+            </li>
+
+            <!-- Nav Item - User Information -->
+            <li th:if="${user == null}" class="nav-item dropdown no-arrow">
+                <a class="nav-link dropdown-toggle" onclick="location.href='/login'" style="cursor:pointer;">
+                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">LOGIN</span>
+                    <img class="img-profile rounded-circle"
+                         src="/img/noprofile.jpeg">
+                </a>
+            </li>
+        </ul>
+
+    </nav>
+    <!-- End of Topbar -->
+
+</th:block>
+</html>
