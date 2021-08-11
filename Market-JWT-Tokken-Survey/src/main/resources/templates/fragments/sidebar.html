@@ -33,7 +33,7 @@
                  data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Product Utilities:</h6>
-                    <a class="collapse-item" href="../product/productlist">전체상품</a>
+                    <a class="collapse-item" href="/product/productlist">전체상품</a>
                     <a class="collapse-item" th:each="event:${eventlist}" th:attr="onclick=|moveCategory(${event.seq})|"
                        th:text="${event.Category}" style="cursor:pointer;"></a>
                 </div>

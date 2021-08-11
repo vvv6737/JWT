@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymelaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="../layouts/userTopbar">
+      layout:decorator="layouts/userLayout">
 
 <th:block layout:fragment="content">
 
@@ -46,11 +46,6 @@
             margin: auto;
         }
     </style>
-
-<body id="page-top">
-
-<!-- Page Wrapper -->
-<div id="wrapper">
 
     <div class="container-fluid">
 
@@ -118,7 +113,6 @@
 
         </div>
     </div>
-</div>
 
 <!-- Logout Modal-->
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -141,24 +135,6 @@
     </div>
 </div>
 
-<!-- Bootstrap core JavaScript-->
-<script src="/vendor/jquery/jquery.min.js"></script>
-<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<!-- Core plugin JavaScript-->
-<script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-<!-- Custom scripts for all pages-->
-<script src="/js/sb-admin-2.min.js"></script>
-
-<!-- Page level plugins -->
-<script src="/vendor/datatables/jquery.dataTables.min.js"></script>
-<script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-<!-- Page level custom scripts -->
-<script src="/js/demo/datatables-demo.js"></script>
-
-</body>
 </th:block>
-</html>
+
 </html>
