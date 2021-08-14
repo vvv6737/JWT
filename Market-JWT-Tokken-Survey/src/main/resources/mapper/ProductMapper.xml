@@ -71,6 +71,7 @@
         SELECT *
         FROM PRODUCTTABLE
         WHERE PRODUCTNO = #{productno}
+        and PRODUCTIMAGENAME = #{productimageName}
     </select>
 
     <!-- PRODUCTNO 에 해당하는 게시글의 정보를 수정한다. -->

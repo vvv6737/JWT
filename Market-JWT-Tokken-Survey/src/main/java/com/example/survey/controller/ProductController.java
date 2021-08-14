@@ -85,12 +85,13 @@ public class ProductController {
             File destinationFile;
             String destinationFileName;
 
-            // fileUrl = "uploadFiles 폴더의 위치";
-            String productimageUrl = "/Users/mac/Desktop/git/Market-JWT-tokken-survey/Market-JWT-Tokken-Survey/src/main/resources/static/upload/";
+            // fileUrl = "uploadFiles 폴더의 위치 - 상대경로";
+            String productimageUrl = System.getProperty("user.dir");
+            String absolutePath = "/src/main/resources/static/upload/";
 
             do {
                 destinationFileName = RandomStringUtils.randomAlphanumeric(32) + "." + fileNameExtension;
-                destinationFile = new File(productimageUrl + destinationFileName);
+                destinationFile = new File(productimageUrl + absolutePath + destinationFileName);
             } while (destinationFile.exists());
 
             // MultipartFile.transferTo() : 요청 시점의 임시 파일을 로컬 파일 시스템에 영구적으로 복사해준다.
@@ -273,11 +274,26 @@ public class ProductController {
 
     // 글 번호에 해당하는 자료를 삭제한다.
     @RequestMapping("/delete/{productno}")
-    private String productDelete(@PathVariable int productno) throws Exception {
+    private String productDelete(@PathVariable int productno, ProductVO productVO) throws Exception {
+
+        String absolutePath = "/src/main/resources/static/upload/";
+        File file = new File(System.getProperty("user.dir") + absolutePath + productVO.getProductimageName());
+        if (file.exists()) {
+            if (file.delete()) {
+                System.out.println(file);
+                System.out.println("파일삭제 성공");
+            } else {
+                System.out.println(file);
+                System.out.println("파일삭제 실패");
+            }
+        } else {
+            System.out.println(file);
+            System.out.println("파일이 존재하지 않습니다.");
+        }
 
         productService.productDeleteService(productno);
         return "redirect:/product/productlist";
-    }//end - private String productDelete(@PathVariable int productno) throws Exception
+    }//end - productDelete
 
 
 }// end - public class ProductController 
