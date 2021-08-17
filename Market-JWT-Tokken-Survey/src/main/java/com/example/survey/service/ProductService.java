@@ -45,8 +45,8 @@ public class ProductService {
 		return productMapper.productDetail(productno);
 	}
 	//게시글 삭제		
-	public int productDeleteService(int productno) throws Exception {
-		return productMapper.productDelete(productno);
+	public int productDeleteService(int productno, String productimageName) throws Exception {
+		return productMapper.productDelete(productno, productimageName);
 	}
 	//게시글 수정
 	public int update(ProductVO productDTO) throws Exception{

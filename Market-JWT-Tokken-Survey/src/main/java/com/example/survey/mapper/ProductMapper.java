@@ -30,7 +30,7 @@ public interface ProductMapper {
 	public ProductVO fileDetail(int Productno) throws Exception;
     
 	//게시글 삭제
-	public int productDelete(int Productno) throws Exception;
+	public int productDelete(int Productno, String productimageName) throws Exception;
 
 	//게시글 수정
 	public int productUpdate(ProductVO product) throws Exception;

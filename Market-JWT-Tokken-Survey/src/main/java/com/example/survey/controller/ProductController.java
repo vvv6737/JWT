@@ -273,8 +273,8 @@ public class ProductController {
     }//end - private String productUpdateProc(HttpServletRequest request,@RequestParam int productno) throws Exception
 
     // 글 번호에 해당하는 자료를 삭제한다.
-    @RequestMapping("/delete/{productno}")
-    private String productDelete(@PathVariable int productno, ProductVO productVO) throws Exception {
+    @RequestMapping("/delete/{productno}/{productimageName}")
+    private String productDelete(@PathVariable int productno, @PathVariable String productimageName, ProductVO productVO) throws Exception {
 
         String absolutePath = "/src/main/resources/static/upload/";
         File file = new File(System.getProperty("user.dir") + absolutePath + productVO.getProductimageName());
@@ -290,7 +290,7 @@ public class ProductController {
             System.out.println(file);
             System.out.println("파일이 존재하지 않습니다.");
         }
-        productService.productDeleteService(productno);
+        productService.productDeleteService(productno, productimageName);
         return "redirect:/product/productlist";
     }//end - productDelete
 
