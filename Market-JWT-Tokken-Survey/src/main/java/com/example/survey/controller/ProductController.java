@@ -290,7 +290,6 @@ public class ProductController {
             System.out.println(file);
             System.out.println("파일이 존재하지 않습니다.");
         }
-
         productService.productDeleteService(productno);
         return "redirect:/product/productlist";
     }//end - productDelete

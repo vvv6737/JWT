@@ -84,7 +84,7 @@
                     <div class="card-body">
                         <div>
                             <div class="thumbnail">
-                                <img th:src="@{${'../upload/' + product.productimageName}}" width="200" height="250" alt="이미지 업로드"
+                                <img th:src="@{${'../upload/' + product.productimageName}}" width="200" height="250" th:alt="${product.productimageOriName}"
                                      th:attr="onclick=|moveProduct(${product.productno})|"
                                      style="width: 100%;margin-bottom: 10px;cursor:pointer;"/>
                                 <br>

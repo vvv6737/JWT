@@ -41,7 +41,6 @@
         FROM
         PRODUCTTABLE
         order by PRODUCTNO desc
-        <!-- LIMIT #{startList}, #{listSize} --> <!-- 최종본인데 집에서는 구동이안되서 일단 보류 -->
     </select>
 
     <select id="ProductcateList" resultType="com.example.survey.model.ProductVO">
@@ -71,7 +70,6 @@
         SELECT *
         FROM PRODUCTTABLE
         WHERE PRODUCTNO = #{productno}
-        and PRODUCTIMAGENAME = #{productimageName}
     </select>
 
     <!-- PRODUCTNO 에 해당하는 게시글의 정보를 수정한다. -->
@@ -90,6 +88,7 @@
         DELETE
         FROM PRODUCTTABLE
         WHERE PRODUCTNO = #{PRODUCTNO}
+        and PRODUCTIMAGENAME = #{productimageName}
     </delete>
 
     <!-- 메인검색 기능 -->
