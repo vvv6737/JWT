@@ -278,6 +278,9 @@ public class ProductController {
 
         String absolutePath = "/src/main/resources/static/upload/";
         File file = new File(System.getProperty("user.dir") + absolutePath + productVO.getProductimageName());
+
+        System.out.println("삭제 파일 경로" + file);
+
         if (file.exists()) {
             if (file.delete()) {
                 System.out.println(file);

@@ -24,13 +24,8 @@
     </script>
 
     <script>
-        function Delete(productno, productimageName) {
-            if (!confirm("정말로 삭제하시겠습니까?")) {
-                return false;
-            } else {
-                alert("삭제되었습니다.");
-                location.href = '/product/delete/' + productno + "/" + productimageName;
-            }
+        function Delete(obj) {
+            window.location.href = '/product/delete/' + obj.dataset.delete;
         }
     </script>
 
@@ -38,7 +33,6 @@
         .w3-sidebar a {
             font-family: "Roboto", sans-serif
         }
-
         .carousel-inner img {
             -webkit-filter: grayscale(45%);
             filter: grayscale(45%); /* make all photos black and white */
@@ -68,7 +62,7 @@
                                  aria-labelledby="dropdownMenuLink">
                                 <div class="dropdown-header">관련 메뉴:</div>
 
-                                <a class="dropdown-item" onclick="test()" th:attr="onclick=|Delete(${product.productno}, ${product.productimageName})|" style="cursor: pointer;">삭제</a>
+                                <a class="dropdown-item" th:data-delete="|${product.productno}/${product.productimageName}|" onclick="Delete(this)" style="cursor: pointer;">삭제</a>
 
                                 <a class="dropdown-item"
                                    th:onclick="'location.href = \'/product/Update/' + ${product.productno} + '\''" style="cursor: pointer;">수정</a>
