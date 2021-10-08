@@ -34,7 +34,7 @@ public class BoardService {
     public String Search (PagingVO pagingVO) {
         boardMapper.Search(pagingVO);
         System.out.println("searchText : " + pagingVO.getSearchText());
-        return boardMapper.Search(pagingVO);
+        return boardMapper.Search(pagingVO); 
     }
 
     //글쓰기
