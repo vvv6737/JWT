@@ -13,17 +13,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class JWTUtils {
+
     final String key = "JWT";
 
-    public static void main(String[] args) throws UnsupportedEncodingException {
-        JWTUtils testJWT = new JWTUtils();
-
-        String jwt = testJWT.createToken();
-        System.out.println(jwt);
-
-        Map<String, Object> claimMap = testJWT.verifyJWT(jwt);
-        System.out.println(claimMap); // 토큰이 만료되었거나 문제가있으면 null
-    }
+//    public static void main(String[] args) throws UnsupportedEncodingException {
+//        JWTUtils testJWT = new JWTUtils();
+//
+//        String jwt = testJWT.createToken();
+//        System.out.println(jwt);
+//
+//        Map<String, Object> claimMap = testJWT.verifyJWT(jwt);
+//        System.out.println(claimMap); // 토큰이 만료되었거나 문제가있으면 null
+//    }
 
     //토큰 생성
     public String createToken() {

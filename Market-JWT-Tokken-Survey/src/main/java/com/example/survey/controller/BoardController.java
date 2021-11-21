@@ -29,7 +29,6 @@ import java.util.*;
 @Controller
 public class BoardController {
     private static final Logger log = LoggerFactory.getLogger(BoardController.class);
-    final String key = "JWT";
 
     @Autowired
     BoardService boardService;
@@ -153,15 +152,13 @@ public class BoardController {
         try {
             UserVO userVO = userService.urlTest(id);
 
-            String jwt = createToken(userVO);
-            System.out.println(jwt);
-
+            String jwt = userService.createToken(userVO);
             model.addAttribute("jwt", jwt);
 
             UserVO userVO1 = SessionUtils.getUser(request);
             model.addAttribute("name", userVO1 == null ? "NO NAME" : userVO1.getName());
 
-            Map<String, Object> claimMap = verifyJWT(jwt);
+            Map<String, Object> claimMap = userService.verifyJWT(jwt);
             System.out.println(claimMap); // 토큰이 만료되었거나 문제가있으면 null
 
             model.addAttribute("claimMap", claimMap);
@@ -181,65 +178,9 @@ public class BoardController {
         }
     }
 
-    //토큰 생성
-    public String createToken(UserVO userVO) {
-
-        //Header 부분 설정
-        Map<String, Object> headers = new HashMap<>();
-        headers.put("typ", "JWT");
-        headers.put("alg", "HS256");
-
-        //payload 부분 설정
-        Map<String, Object> payloads = new HashMap<>();
-        //payloads.put("data", "My JWT");
-        payloads.put("seq", userVO.getSeq());
-        payloads.put("id", userVO.getId());
-        payloads.put("name", userVO.getName());
-        payloads.put("email", userVO.getEmail());
-        payloads.put("tel", userVO.getTel());
-        payloads.put("eventSeq", userVO.getEventSeq());
-
-        //Long expiredTime = 1000 * 60L * 60L * 2L; // 토큰 유효 시간 (2시간)
-        Long expiredTime = 30 * 60 * 1000L; // 토큰 유효 시간 (30분)
-
-
-        Date ext = new Date(); // 토큰 만료 시간
-        ext.setTime(ext.getTime() + expiredTime);
-
-        // 토큰 Builder
-        String jwt = Jwts.builder()
-                .setHeader(headers) // Headers 설정
-                .setClaims(payloads) // Claims 설정
-                //.setSubject(sampleVO.getEmail()) // 토큰 용도(제목)
-                .setExpiration(ext) // 토큰 만료 시간 설정
-                .signWith(SignatureAlgorithm.HS256, key.getBytes()) // HS256과 Key로 Sign
-                .compact(); // 토큰 생성
-
-        return jwt;
-    }
-
-    //토큰 검증
-    public Map<String, Object> verifyJWT(String jwt) throws UnsupportedEncodingException {
-        Map<String, Object> claimMap = null;
-        try {
-            Claims claims = Jwts.parser()
-                    .setSigningKey(key.getBytes("UTF-8")) // Set Key
-                    .parseClaimsJws(jwt) // 파싱 및 검증, 실패 시 에러
-                    .getBody();
-            claimMap = claims;
-
-        } catch (ExpiredJwtException e) { // 토큰이 만료되었을 경우
-            System.out.println(e);
-        } catch (Exception e) { // 그외 에러났을 경우
-            System.out.println(e);
-        }
-        return claimMap;
-    }
-
     // 게시글 수정 화면
     @GetMapping("/list/boardUpdate/{seq}")
     private String boardUpdate(@PathVariable int seq, Model model, HttpServletRequest request, HttpServletResponse response) {
-        System.out.println("seq : " + seq);
         BoardVO boardVO = boardService.boardDetail(seq);
         model.addAttribute("board", boardVO);
         return "pages/board/boardUpdate";

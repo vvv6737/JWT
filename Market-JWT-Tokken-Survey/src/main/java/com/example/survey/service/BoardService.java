@@ -50,8 +50,6 @@ public class BoardService {
     //게시글 수정
     public BoardVO boardUpdate(BoardVO boardVO){
         boardMapper.boardUpdate(boardVO);
-        System.out.println("title : " + boardVO.getTitle());
-        System.out.println("content : " + boardVO.getContent());
         return boardVO;
     }
 

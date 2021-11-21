@@ -229,7 +229,6 @@ public class ProductController {
 
         UserVO userVO = SessionUtils.getUser(request);
         model.addAttribute("user", userVO);
-        model.addAttribute("user", userVO);
 
         AdminVO admin = SessionUtils.getAdmin(request);
         model.addAttribute("admin", admin);
