@@ -31,7 +31,7 @@ public class JWTUtils {
 
         //Header 부분 설정
         Map<String, Object> headers = new HashMap<>();
-        headers.put("typ", "JWT");
+        headers.put("typ", key);
         headers.put("alg", "HS256");
 
         UserVO userVO = new UserVO();

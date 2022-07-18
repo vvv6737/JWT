@@ -25,7 +25,6 @@ public class ProductService {
 
 	//게시글 목록 보기
 	public List<ProductVO> productListService(Pagination pagination) throws Exception {
-		System.out.println("productListService : " + pagination);
 		return productMapper.productList(pagination);
 	}
 	//게시글 등록

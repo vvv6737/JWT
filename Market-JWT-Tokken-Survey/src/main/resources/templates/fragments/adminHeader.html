@@ -13,7 +13,6 @@
             <div class="navbar-header">
                 <a class="navbar-brand" href="/adminindex">Admin</a>
             </div>
-
             <div>
                 <div class="form-group collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
@@ -47,7 +46,7 @@
                         </li>
 
                         <li th:if="${admin != null}">
-                            <a th:text="|${admin.managerName}님 환영합니다.|"/>
+                            <a th:text="|${session.ADMIN_KEY.managerId}님 환영합니다.|"></a>
                         </li>
 
                     </ul>

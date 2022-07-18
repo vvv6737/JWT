@@ -9,6 +9,7 @@ import com.example.survey.model.ReplyVO;
 import com.example.survey.model.UserVO;
 import com.example.survey.service.*;
 import com.example.survey.utils.SessionUtils;
+import com.example.survey.utils.naverNewsApi;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
@@ -24,11 +25,15 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.*;
 
 @Controller
 public class BoardController {
     private static final Logger log = LoggerFactory.getLogger(BoardController.class);
+
+    private final static String ID = "DzXt1NqAAm0gzO4sSP1r";
+    private final static String SECRET = "u_sjmtAKb3";
 
     @Autowired
     BoardService boardService;
@@ -203,5 +208,20 @@ public class BoardController {
     private String boardDelete(@PathVariable int seq, BoardVO boardVO) {
         boardService.boardDelete(boardVO);
         return "redirect:/surveylist/1";
+    }
+
+    @ResponseBody
+    @PostMapping(value = "/api/naverNewsApi",  name = "네이버 뉴스 api")
+    public String naverNews(HttpServletRequest req) {
+        String searchData = req.getParameter("searchData");
+        String response = null;
+        try {
+            naverNewsApi crawler = new naverNewsApi();
+            String url = URLEncoder.encode(searchData, "UTF-8");
+            response = crawler.search(ID, SECRET, url);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return response;
     }
 }
